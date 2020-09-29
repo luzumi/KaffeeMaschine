@@ -4,84 +4,131 @@ title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
     abstract class kaffeemaschine.AbstractBehaelter {
+        + bezeichner : String
+        ~ fuellstand : double
+        ~ maxFuellMenge : double
+        + AbstractBehaelter()
+        {abstract} + toString()
     }
   }
   
 
   namespace kaffeemaschine {
     class kaffeemaschine.BehaelterAbfall {
+        + BehaelterAbfall()
+        + toString()
+        + wartung()
     }
   }
   
 
   namespace kaffeemaschine {
     class kaffeemaschine.BehaelterKaffee {
+        + BehaelterKaffee()
+        + toString()
+        + wartung()
     }
   }
   
 
   namespace kaffeemaschine {
     class kaffeemaschine.BehaelterKakao {
+        + BehaelterKakao()
+        + toString()
+        + wartung()
     }
   }
   
 
   namespace kaffeemaschine {
     class kaffeemaschine.BehaelterMilch {
+        + BehaelterMilch()
+        + toString()
+        + wartung()
     }
   }
   
 
   namespace kaffeemaschine {
     class kaffeemaschine.BehaelterWasser {
+        + BehaelterWasser()
+        + toString()
+        + wartung()
     }
   }
   
 
   namespace kaffeemaschine {
     class kaffeemaschine.BehaelterZucker {
+        + BehaelterZucker()
+        + toString()
+        + wartung()
     }
   }
   
 
   namespace kaffeemaschine {
     interface kaffeemaschine.IAuswahl {
+        {abstract} + programmAuswahl()
     }
   }
   
 
   namespace kaffeemaschine {
     interface kaffeemaschine.IWartbar {
+        {abstract} + wartung()
     }
   }
   
 
   namespace kaffeemaschine {
     class kaffeemaschine.Kaffeemaschine {
+        ~ PROGRAMM_ABBRUCH : int
+        ~ WARTUNG : int
+        {static} ~ betriebsbereit : boolean
+        ~ kaffeemaschinen : AbstractBehaelter[]
+        + Kaffeemaschine()
+        + getraenkZuebereiten()
+        + programmAbbruch()
+        + wartungInitiieren()
+        + zutatenEntnahme()
+        - getraenkAusgeben()
+        - pruefeFuellstand()
+        - wartenAufWartung()
     }
   }
   
 
   namespace kaffeemaschine {
     class kaffeemaschine.Menu {
+        ~ sc : Scanner
+        + Menu()
+        + programmAuswahl()
     }
   }
   
 
   namespace kaffeemaschine {
     class kaffeemaschine.Rezept {
+        {static} + AuswahlProdukt : String[]
+        {static} + getZutatenVerbrauch : double[][]
     }
   }
   
 
   namespace kaffeemaschine {
     class kaffeemaschine.StarteKaffeeMaschine {
+        {static} + baueKaffeeMaschine()
+        {static} + main()
     }
   }
   
 
   namespace kaffeemaschine {
     class kaffeemaschine.ZutatenBehaelter {
+        + ZutatenBehaelter()
+        + toString()
+        + wartung()
     }
   }
   

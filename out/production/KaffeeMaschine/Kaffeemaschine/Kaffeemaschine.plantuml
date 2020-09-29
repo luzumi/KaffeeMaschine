@@ -2,116 +2,143 @@
 
 title __KAFFEEMASCHINE's Class Diagram__\n
 
-  namespace Kaffeemaschine {
-    class Kaffeemaschine.Auswahl {
-        + Auswahl()
-    }
-  }
-  
-
-  namespace Kaffeemaschine {
-    abstract class Kaffeemaschine.Behaelter {
+  namespace kaffeemaschine {
+    abstract class kaffeemaschine.AbstractBehaelter {
         + bezeichner : String
-        ~ fuellstand : float
-        ~ maxFuellMenge : float
-        + Behaelter()
+        ~ fuellstand : double
+        ~ maxFuellMenge : double
+        + AbstractBehaelter()
         {abstract} + toString()
     }
   }
   
 
-  namespace Kaffeemaschine {
-    class Kaffeemaschine.BehaelterAbfall {
+  namespace kaffeemaschine {
+    class kaffeemaschine.Menu {
+        ~ sc : Scanner
+        + Auswahl()
+        + programmAuswahl()
+    }
+  }
+  
+
+  namespace kaffeemaschine {
+    class kaffeemaschine.BehaelterAbfall {
         + BehaelterAbfall()
         + toString()
+        + wartung()
     }
   }
   
 
-  namespace Kaffeemaschine {
-    class Kaffeemaschine.BehaelterKaffee {
+  namespace kaffeemaschine {
+    class kaffeemaschine.BehaelterKaffee {
         + BehaelterKaffee()
         + toString()
+        + wartung()
     }
   }
   
 
-  namespace Kaffeemaschine {
-    class Kaffeemaschine.BehaelterKakao {
+  namespace kaffeemaschine {
+    class kaffeemaschine.BehaelterKakao {
         + BehaelterKakao()
         + toString()
+        + wartung()
     }
   }
   
 
-  namespace Kaffeemaschine {
-    class Kaffeemaschine.BehaelterMilch {
+  namespace kaffeemaschine {
+    class kaffeemaschine.BehaelterMilch {
         + BehaelterMilch()
         + toString()
+        + wartung()
     }
   }
   
 
-  namespace Kaffeemaschine {
-    class Kaffeemaschine.BehaelterWasser {
+  namespace kaffeemaschine {
+    class kaffeemaschine.BehaelterWasser {
         + BehaelterWasser()
         + toString()
+        + wartung()
     }
   }
   
 
-  namespace Kaffeemaschine {
-    class Kaffeemaschine.BehaelterZucker {
+  namespace kaffeemaschine {
+    class kaffeemaschine.BehaelterZucker {
         + BehaelterZucker()
         + toString()
+        + wartung()
     }
   }
   
 
-  namespace Kaffeemaschine {
-    class Kaffeemaschine.Kaffeemaschine {
+  namespace kaffeemaschine {
+    interface kaffeemaschine.IWartbar {
+        {abstract} + wartung()
+    }
+  }
+  
+
+  namespace kaffeemaschine {
+    class kaffeemaschine.Kaffeemaschine {
+        ~ WARTUNG : int
         {static} ~ betriebsbereit : boolean
-        ~ kaffeemaschine : Behaelter[]
-        ~ sc : Scanner
+        ~ kaffeemaschinen : AbstractBehaelter[]
         + Kaffeemaschine()
-        + programmAuswahl()
+        + getraenkZuebereiten()
+        + programmAbbruch()
+        + wartungInitiieren()
         + zutatenEntnahme()
         - getraenkAusgeben()
         - pruefeFuellstand()
+        - wartenAufWartung()
     }
   }
   
 
-  namespace Kaffeemaschine {
-    class Kaffeemaschine.Rezept {
+  namespace kaffeemaschine {
+    class kaffeemaschine.Rezept {
         {static} + AuswahlProdukt : String[]
         {static} + getZutatenVerbrauch : double[][]
     }
   }
   
 
-  namespace Kaffeemaschine {
-    class Kaffeemaschine.StarteKaffeeMaschine {
+  namespace kaffeemaschine {
+    class kaffeemaschine.StarteKaffeeMaschine {
         {static} + main()
     }
   }
   
 
-  namespace Kaffeemaschine {
-    class Kaffeemaschine.ZutatenBehaelter {
+  namespace kaffeemaschine {
+    class kaffeemaschine.ZutatenBehaelter {
         + ZutatenBehaelter()
         + toString()
+        + wartung()
     }
   }
   
 
-  Kaffeemaschine.BehaelterAbfall -up-|> Kaffeemaschine.Behaelter
-  Kaffeemaschine.BehaelterKaffee -up-|> Kaffeemaschine.ZutatenBehaelter
-  Kaffeemaschine.BehaelterKakao -up-|> Kaffeemaschine.ZutatenBehaelter
-  Kaffeemaschine.BehaelterMilch -up-|> Kaffeemaschine.ZutatenBehaelter
-  Kaffeemaschine.BehaelterWasser -up-|> Kaffeemaschine.ZutatenBehaelter
-  Kaffeemaschine.BehaelterZucker -up-|> Kaffeemaschine.ZutatenBehaelter
-  Kaffeemaschine.ZutatenBehaelter -up-|> Kaffeemaschine.Behaelter
+  kaffeemaschine.AbstractBehaelter .up.|> kaffeemaschine.IWartbar
+  kaffeemaschine.BehaelterAbfall .up.|> kaffeemaschine.IWartbar
+  kaffeemaschine.BehaelterAbfall -up-|> kaffeemaschine.AbstractBehaelter
+  kaffeemaschine.BehaelterKaffee .up.|> kaffeemaschine.IWartbar
+  kaffeemaschine.BehaelterKaffee -up-|> kaffeemaschine.ZutatenBehaelter
+  kaffeemaschine.BehaelterKakao .up.|> kaffeemaschine.IWartbar
+  kaffeemaschine.BehaelterKakao -up-|> kaffeemaschine.ZutatenBehaelter
+  kaffeemaschine.BehaelterMilch .up.|> kaffeemaschine.IWartbar
+  kaffeemaschine.BehaelterMilch -up-|> kaffeemaschine.ZutatenBehaelter
+  kaffeemaschine.BehaelterWasser .up.|> kaffeemaschine.IWartbar
+  kaffeemaschine.BehaelterWasser -up-|> kaffeemaschine.ZutatenBehaelter
+  kaffeemaschine.BehaelterZucker .up.|> kaffeemaschine.IWartbar
+  kaffeemaschine.BehaelterZucker -up-|> kaffeemaschine.ZutatenBehaelter
+  kaffeemaschine.ZutatenBehaelter .up.|> kaffeemaschine.IWartbar
+  kaffeemaschine.ZutatenBehaelter -up-|> kaffeemaschine.AbstractBehaelter
 
 
 right footer

@@ -1,4 +1,4 @@
-package KaffeeMaschine;/*corat
+package kaffeemaschine;/*corat
  *23.09.2020
  *17:19
  *KaffeeMaschine
@@ -10,17 +10,18 @@ package KaffeeMaschine;/*corat
 public class ZutatenBehaelter extends AbstractBehaelter implements IWartbar {
 
     public ZutatenBehaelter(String rezeptZutat) {
-        super(rezeptZutat);
 
+        super(rezeptZutat);
     }
+
 
     @Override
     public String toString() {
         return null;
     }
 
-    @Override
-    public void wartung() {
 
-    }
+    @Override
+    public void wartung() { }
+
 }

@@ -4,7 +4,7 @@
  *KaffeeMaschine
  */
 
-package KaffeeMaschine;
+package kaffeemaschine;
 
 /**
  * Abfallbehälter sammelt Abfälle bei der Getränkeherstellung -> 1 Einheit je Getränk
@@ -14,19 +14,26 @@ package KaffeeMaschine;
 public class BehaelterAbfall extends AbstractBehaelter implements IWartbar {
 
     public BehaelterAbfall(String bezeichner) {
+
         super(bezeichner);
+
         this.maxFuellMenge = 0;
+
         this.fuellstand = 100;
     }
+
 
     @Override
     public String toString() {
-        return "Abfallbehaelter Fuellmenge = "+ this.fuellstand;
+        return "Abfallbehaelter Einheiten bis Leerung = "+ this.fuellstand;
     }
+
 
     @Override
     public void wartung() {
+
         this.fuellstand = 100;
+
         System.out.println("Abfallbehälter entleert");
     }
 }

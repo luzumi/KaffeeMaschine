@@ -4,12 +4,13 @@
  *KaffeeMaschine
  */
 
-package KaffeeMaschine;
+package kaffeemaschine;
 
 /**
  * @author corat
  */
 public interface IWartbar {
+
     /**
      * stellt für alle wartbaren Behälter die Methode wartung() bereit
      * Darin wird die Wartung in den Klassen spezifiziert

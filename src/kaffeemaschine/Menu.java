@@ -4,14 +4,19 @@
  *KaffeeMaschine
  */
 
-package KaffeeMaschine;
+package kaffeemaschine;
+
+
+import java.util.Scanner;
 
 /**
  * @author corat
  */
-public class Auswahl {
+public class Menu implements IAuswahl{
+    Scanner sc = new Scanner(System.in);
 
-    public Auswahl() {
+
+    public Menu() {
         System.out.println("****** Kaffeemaschine ******");
         System.out.println("============================");
         System.out.println("Auswahl:____________________");
@@ -22,5 +27,14 @@ public class Auswahl {
         System.out.println("5.) Kakao___________________");
         System.out.println("9.) _________________Wartung");
         System.out.println("0.) _________________Abbruch");
+    }
+
+    /**
+     *
+     * @return Auswahl des vom User gewählten Programms
+     */
+    @Override
+    public int programmAuswahl() {
+        return sc.nextInt();
     }
 }

@@ -1,4 +1,4 @@
-package KaffeeMaschine;/*corat
+package kaffeemaschine;/*corat
  *23.09.2020
  *17:23
  *KaffeeMaschine

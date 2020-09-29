@@ -1,4 +1,4 @@
-package KaffeeMaschine;/*corat
+package kaffeemaschine;/*corat
  *23.09.2020
  *17:35
  *KaffeeMaschine
@@ -10,8 +10,11 @@ package KaffeeMaschine;/*corat
 public class BehaelterMilch extends ZutatenBehaelter implements IWartbar {
 
     public BehaelterMilch(String rezeptZutat) {
+
         super(rezeptZutat);
+
         this.maxFuellMenge = 1;
+
         this.fuellstand = 1;
     }
 
@@ -22,7 +25,9 @@ public class BehaelterMilch extends ZutatenBehaelter implements IWartbar {
 
     @Override
     public void wartung() {
+
         this.fuellstand = 1;
+
         System.out.println("Milch wieder aufgefüllt");
     }
 }
