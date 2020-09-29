@@ -46,17 +46,7 @@ public class Kaffeemaschine {
     public void zutatenEntnahme(int eingabeUser) {
         if(eingabeUser > 0 && eingabeUser <= Rezept.AuswahlProdukt.length) {
 
-            for (int i = 0; i < kaffeemaschinen.length - 1; i++) {
-
-                if (pruefeFuellstand(eingabeUser - 1, i)) {
-                    kaffeemaschinen[i].fuellstand -= Rezept.getZutatenVerbrauch[eingabeUser - 1][i];
-                    System.out.println(kaffeemaschinen[i].toString());
-                } else {
-                    betriebsbereit = false;
-                    wartenAufWartung(i);
-                    break;
-                }
-            }
+            getraenkZuebereiten(eingabeUser);
             kaffeemaschinen[5].fuellstand -= 1;
             getraenkAusgeben(eingabeUser);
         }
@@ -66,16 +56,33 @@ public class Kaffeemaschine {
                 System.exit(0);
             }
             else if(eingabeUser == WARTUNG){
-                for (int i = 0; i < kaffeemaschinen.length - 1; i++){
-                    if(kaffeemaschinen[i].fuellstand == 0 ){
-                        this.kaffeemaschinen[i].wartung();
-                    }
-                }
+                wartungInitiieren();
             }
-
             else {
                 System.out.println("Falsche Eingabe -> Programmabruch");
                 System.exit(0);
+            }
+        }
+    }
+
+    public void wartungInitiieren() {
+        for (int i = 0; i < kaffeemaschinen.length - 1; i++){
+            if(kaffeemaschinen[i].fuellstand == 0 ){
+                this.kaffeemaschinen[i].wartung();
+            }
+        }
+    }
+
+    public void getraenkZuebereiten(int eingabeUser) {
+        for (int i = 0; i < kaffeemaschinen.length - 1; i++) {
+
+            if (pruefeFuellstand(eingabeUser - 1, i)) {
+                kaffeemaschinen[i].fuellstand -= Rezept.getZutatenVerbrauch[eingabeUser - 1][i];
+                System.out.println(kaffeemaschinen[i].toString());
+            } else {
+                betriebsbereit = false;
+                wartenAufWartung(i);
+                break;
             }
         }
     }
