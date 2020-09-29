@@ -4,7 +4,7 @@
  *KaffeeMaschine
  */
 
-package Kaffeemaschine;
+package KaffeeMaschine;
 
 /**
  * @author corat

@@ -1,9 +1,12 @@
-package Kaffeemaschine;/*corat
+package KaffeeMaschine;/*corat
  *23.09.2020
  *17:23
  *KaffeeMaschine
  */
 
+/**
+ * @author corat
+ */
 public class Rezept {
     /**
      * Enthält Informationen über die zu entnehmenden Mengen und Rezeptbezeichnungen

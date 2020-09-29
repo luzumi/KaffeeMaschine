@@ -10,10 +10,10 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace Kaffeemaschine {
-    abstract class Kaffeemaschine.Behaelter {
+    abstract class Kaffeemaschine.AbstractBehaelter {
         + bezeichner : String
-        ~ fuellstand : float
-        ~ maxFuellMenge : float
+        ~ fuellstand : double
+        ~ maxFuellMenge : double
         + Behaelter()
         {abstract} + toString()
     }
@@ -24,6 +24,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
     class Kaffeemaschine.BehaelterAbfall {
         + BehaelterAbfall()
         + toString()
+        + wartung()
     }
   }
   
@@ -32,6 +33,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
     class Kaffeemaschine.BehaelterKaffee {
         + BehaelterKaffee()
         + toString()
+        + wartung()
     }
   }
   
@@ -40,6 +42,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
     class Kaffeemaschine.BehaelterKakao {
         + BehaelterKakao()
         + toString()
+        + wartung()
     }
   }
   
@@ -48,6 +51,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
     class Kaffeemaschine.BehaelterMilch {
         + BehaelterMilch()
         + toString()
+        + wartung()
     }
   }
   
@@ -56,6 +60,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
     class Kaffeemaschine.BehaelterWasser {
         + BehaelterWasser()
         + toString()
+        + wartung()
     }
   }
   
@@ -64,6 +69,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
     class Kaffeemaschine.BehaelterZucker {
         + BehaelterZucker()
         + toString()
+        + wartung()
     }
   }
   
@@ -71,13 +77,14 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   namespace Kaffeemaschine {
     class Kaffeemaschine.Kaffeemaschine {
         {static} ~ betriebsbereit : boolean
-        ~ kaffeemaschine : Behaelter[]
+        ~ kaffeemaschinen : Behaelter[]
         ~ sc : Scanner
         + Kaffeemaschine()
         + programmAuswahl()
         + zutatenEntnahme()
         - getraenkAusgeben()
         - pruefeFuellstand()
+        - wartenAufWartung()
     }
   }
   
@@ -98,20 +105,36 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace Kaffeemaschine {
-    class Kaffeemaschine.ZutatenBehaelter {
-        + ZutatenBehaelter()
-        + toString()
+    interface Kaffeemaschine.IWartbar {
+        {abstract} + wartung()
     }
   }
   
 
-  Kaffeemaschine.BehaelterAbfall -up-|> Kaffeemaschine.Behaelter
+  namespace Kaffeemaschine {
+    class Kaffeemaschine.ZutatenBehaelter {
+        + ZutatenBehaelter()
+        + toString()
+        + wartung()
+    }
+  }
+  
+
+  Kaffeemaschine.AbstractBehaelter .up.|> Kaffeemaschine.IWartbar
+  Kaffeemaschine.BehaelterAbfall .up.|> Kaffeemaschine.IWartbar
+  Kaffeemaschine.BehaelterAbfall -up-|> Kaffeemaschine.AbstractBehaelter
+  Kaffeemaschine.BehaelterKaffee .up.|> Kaffeemaschine.IWartbar
   Kaffeemaschine.BehaelterKaffee -up-|> Kaffeemaschine.ZutatenBehaelter
+  Kaffeemaschine.BehaelterKakao .up.|> Kaffeemaschine.IWartbar
   Kaffeemaschine.BehaelterKakao -up-|> Kaffeemaschine.ZutatenBehaelter
+  Kaffeemaschine.BehaelterMilch .up.|> Kaffeemaschine.IWartbar
   Kaffeemaschine.BehaelterMilch -up-|> Kaffeemaschine.ZutatenBehaelter
+  Kaffeemaschine.BehaelterWasser .up.|> Kaffeemaschine.IWartbar
   Kaffeemaschine.BehaelterWasser -up-|> Kaffeemaschine.ZutatenBehaelter
+  Kaffeemaschine.BehaelterZucker .up.|> Kaffeemaschine.IWartbar
   Kaffeemaschine.BehaelterZucker -up-|> Kaffeemaschine.ZutatenBehaelter
-  Kaffeemaschine.ZutatenBehaelter -up-|> Kaffeemaschine.Behaelter
+  Kaffeemaschine.ZutatenBehaelter .up.|> Kaffeemaschine.IWartbar
+  Kaffeemaschine.ZutatenBehaelter -up-|> Kaffeemaschine.AbstractBehaelter
 
 
 right footer

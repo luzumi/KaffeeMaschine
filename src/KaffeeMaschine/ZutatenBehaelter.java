@@ -1,10 +1,13 @@
-package Kaffeemaschine;/*corat
+package KaffeeMaschine;/*corat
  *23.09.2020
  *17:19
  *KaffeeMaschine
  */
 
-public class ZutatenBehaelter extends Behaelter implements Wartbar{
+/**
+ * @author corat
+ */
+public class ZutatenBehaelter extends AbstractBehaelter implements IWartbar {
 
     public ZutatenBehaelter(String rezeptZutat) {
         super(rezeptZutat);

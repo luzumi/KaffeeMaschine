@@ -4,8 +4,11 @@
  *KaffeeMaschine
  */
 
-package Kaffeemaschine;
+package KaffeeMaschine;
 
+/**
+ * @author corat
+ */
 public class Auswahl {
 
     public Auswahl() {

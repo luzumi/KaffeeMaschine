@@ -4,7 +4,7 @@
  *KaffeeMaschine
  */
 
-package Kaffeemaschine;
+package KaffeeMaschine;
 
 import java.util.Scanner;
 
@@ -15,9 +15,10 @@ import java.util.Scanner;
  * Dabei fällt Müll an, der im Abfallbehälter geammelt wird
  */
 public class Kaffeemaschine {
-    Behaelter[] kaffeemaschinen = new Behaelter[6];
+    AbstractBehaelter[] kaffeemaschinen = new AbstractBehaelter[6];
     static boolean betriebsbereit = true;
     Scanner sc = new Scanner(System.in);
+    final int WARTUNG = 9;
 
     public Kaffeemaschine() {
         kaffeemaschinen[0] = new BehaelterWasser("Wasser");
@@ -64,13 +65,14 @@ public class Kaffeemaschine {
                 System.out.println("Auswahl \"0\" -> Programmabruch");
                 System.exit(0);
             }
-            else if(eingabeUser == 9){
+            else if(eingabeUser == WARTUNG){
                 for (int i = 0; i < kaffeemaschinen.length - 1; i++){
                     if(kaffeemaschinen[i].fuellstand == 0 ){
                         this.kaffeemaschinen[i].wartung();
                     }
                 }
             }
+
             else {
                 System.out.println("Falsche Eingabe -> Programmabruch");
                 System.exit(0);
@@ -83,7 +85,7 @@ public class Kaffeemaschine {
             System.out.println(kaffeemaschinen[zaehler].bezeichner + "Behälter ist LEER\n*****************\nDrücken Sie die 9!\n\n******************");
             Auswahl auswahl = new Auswahl();
             if(programmAuswahl() == 9){
-                for (Behaelter b: kaffeemaschinen){
+                for (AbstractBehaelter b: kaffeemaschinen){
                     b.wartung();
                 }
                 betriebsbereit = true;
