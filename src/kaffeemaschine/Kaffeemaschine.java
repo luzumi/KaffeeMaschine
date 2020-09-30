@@ -14,19 +14,24 @@ package kaffeemaschine;
  */
 public class Kaffeemaschine {
 
-    AbstractBehaelter[] kaffeemaschinen;
+    AbstractBehaelter[] kaffeemaschinen = new AbstractBehaelter[6];
     static boolean betriebsbereit = true;
     final int WARTUNG = 9;
     final int PROGRAMM_ABBRUCH = 0;
 
     /**
      *
-     * @param kaffeemaschinen [] eine Kaffeemaschine hat 6 verschiede Behälteren,
-     *                        einen für Müll und 5 weitere mit Zutaten für die Getränke
-     *                        Diese finden sich im übergebenen Array wieder
+     * eine Kaffeemaschine hat 6 verschiedene Behältern,
+     * einen für Müll und 5 weitere mit Zutaten für die Getränke
+     * Diese finden sich im kaffeemaschinen-Array wieder
      */
-    public Kaffeemaschine(AbstractBehaelter[] kaffeemaschinen) {
-        this.kaffeemaschinen = kaffeemaschinen;
+    public Kaffeemaschine() {
+        kaffeemaschinen[0] = new BehaelterWasser("Wasser");
+        kaffeemaschinen[1] = new BehaelterKaffee("Kaffee");
+        kaffeemaschinen[2] = new BehaelterKakao("Kakao");
+        kaffeemaschinen[3] = new BehaelterZucker("Zucker");
+        kaffeemaschinen[4] = new BehaelterMilch("Milch");
+        kaffeemaschinen[5] = new BehaelterAbfall("Abfall");
     }
 
 

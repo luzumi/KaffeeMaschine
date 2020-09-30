@@ -118,7 +118,6 @@ title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
     class kaffeemaschine.StarteKaffeeMaschine {
-        {static} + baueKaffeeMaschine()
         {static} + main()
     }
   }

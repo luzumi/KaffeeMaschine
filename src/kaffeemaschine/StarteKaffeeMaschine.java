@@ -15,10 +15,8 @@ package kaffeemaschine;
 public class StarteKaffeeMaschine {
 
     public static void main(String[] args) {
-        AbstractBehaelter[] kaffeemaschinen = new AbstractBehaelter[6];
-        baueKaffeeMaschine(kaffeemaschinen);
 
-        Kaffeemaschine kaffeemaschine = new Kaffeemaschine(kaffeemaschinen);
+        Kaffeemaschine kaffeemaschine = new Kaffeemaschine();
 
         IAuswahl menu = new Menu();
 
@@ -26,15 +24,6 @@ public class StarteKaffeeMaschine {
 
             kaffeemaschine.zutatenEntnahme(menu.programmAuswahl());
         }
-    }
-
-    public static void baueKaffeeMaschine(AbstractBehaelter[] kaffeemaschinen) {
-        kaffeemaschinen[0] = new BehaelterWasser("Wasser");
-        kaffeemaschinen[1] = new BehaelterKaffee("Kaffee");
-        kaffeemaschinen[2] = new BehaelterKakao("Kakao");
-        kaffeemaschinen[3] = new BehaelterZucker("Zucker");
-        kaffeemaschinen[4] = new BehaelterMilch("Milch");
-        kaffeemaschinen[5] = new BehaelterAbfall("Abfall");
     }
 }
 
