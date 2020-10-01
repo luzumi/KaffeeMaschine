@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="JavaHelperlein">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../JavaHelperlein" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../JavaHelperlein/src/de/gerweckweb/helper" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../JavaHelperlein" recursive="false" />
+  </library>
+</component>

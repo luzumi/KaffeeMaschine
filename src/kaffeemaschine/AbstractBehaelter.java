@@ -17,11 +17,17 @@ public abstract class AbstractBehaelter implements IWartbar {
         this.bezeichner = bezeichner;
     }
 
+    public AbstractBehaelter(String rezeptZutat, double fuellstand, double maxFuellMenge) {
+        this.bezeichner = rezeptZutat;
+        this.fuellstand = fuellstand;
+        this.maxFuellMenge = maxFuellMenge;
+    }
+
     /**
      *  Jeder Behälter bekommt die Ausgabefunktion
      * @return fuellstand des Behälters und Bestätigung der Aktion in der Console
      */
-    @Override
-    public abstract String toString();
+
+    public abstract String toString(AbstractBehaelter behaelter);
 
 }

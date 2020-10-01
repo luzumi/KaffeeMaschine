@@ -14,7 +14,7 @@ package kaffeemaschine;
  */
 public class Kaffeemaschine {
 
-    AbstractBehaelter[] kaffeemaschinen = new AbstractBehaelter[6];
+    AbstractBehaelter[] behaelterListe = new AbstractBehaelter[6];
     static boolean betriebsbereit = true;
     final int WARTUNG = 9;
     final int PROGRAMM_ABBRUCH = 0;
@@ -26,12 +26,12 @@ public class Kaffeemaschine {
      * Diese finden sich im kaffeemaschinen-Array wieder
      */
     public Kaffeemaschine() {
-        kaffeemaschinen[0] = new BehaelterWasser("Wasser");
-        kaffeemaschinen[1] = new BehaelterKaffee("Kaffee");
-        kaffeemaschinen[2] = new BehaelterKakao("Kakao");
-        kaffeemaschinen[3] = new BehaelterZucker("Zucker");
-        kaffeemaschinen[4] = new BehaelterMilch("Milch");
-        kaffeemaschinen[5] = new BehaelterAbfall("Abfall");
+        behaelterListe[0] = new ZutatenBehaelter("Wasser", 10, 10);
+        behaelterListe[1] = new ZutatenBehaelter("Kaffee", 1, 1);
+        behaelterListe[2] = new ZutatenBehaelter("Kakao", 1, 1);
+        behaelterListe[3] = new ZutatenBehaelter("Zucker", 1, 1);
+        behaelterListe[4] = new ZutatenBehaelter("Milch", 1, 1);
+        behaelterListe[5] = new AbfallBehaelter("Abfall", 0, 100);
     }
 
 
@@ -44,9 +44,10 @@ public class Kaffeemaschine {
     public void zutatenEntnahme(int eingabeAuswahl) {
 
         if(eingabeAuswahl > 0 && eingabeAuswahl <= Rezept.AuswahlProdukt.length) {
+            behaelterListe[5].fuellstand += 10;
             getraenkZuebereiten(eingabeAuswahl);
-            kaffeemaschinen[5].fuellstand -= 1;
             getraenkAusgeben(eingabeAuswahl);
+            new Menu();
         }
         else {
             if(eingabeAuswahl==PROGRAMM_ABBRUCH){
@@ -54,6 +55,7 @@ public class Kaffeemaschine {
             }
             else if(eingabeAuswahl == WARTUNG){
                 wartungInitiieren();
+                new Menu();
             }
             else {
                 programmAbbruch("Falsche Eingabe -> Programmabruch");
@@ -71,25 +73,29 @@ public class Kaffeemaschine {
 
     public void wartungInitiieren() {
 
-        for (int zaehler = 0; zaehler < kaffeemaschinen.length - 1; zaehler++){
+        for (int zaehler = 0; zaehler < behaelterListe.length; zaehler++){
 
-            if(kaffeemaschinen[zaehler].fuellstand == 0 ){
+            if(behaelterListe[zaehler].fuellstand < behaelterListe[zaehler].maxFuellMenge ){
 
-                this.kaffeemaschinen[zaehler].wartung();
+                System.out.println(this.behaelterListe[zaehler].wartung(behaelterListe[zaehler]));
             }
+        }
+        System.out.println("============================");
+        for (AbstractBehaelter ab : behaelterListe){
+            System.out.println(ab.toString(ab));
         }
     }
 
 
     public void getraenkZuebereiten(int eingabeAuswahl) {
 
-        for (int zaehler = 0; zaehler < kaffeemaschinen.length - 1; zaehler++) {
+        for (int zaehler = 0; zaehler < behaelterListe.length - 1; zaehler++) {
 
             if (pruefeFuellstand(eingabeAuswahl - 1, zaehler)) {
 
-                kaffeemaschinen[zaehler].fuellstand -= Rezept.getZutatenVerbrauch[eingabeAuswahl - 1][zaehler];
+                behaelterListe[zaehler].fuellstand -= Rezept.getZutatenVerbrauch[eingabeAuswahl - 1][zaehler];
 
-                System.out.println(kaffeemaschinen[zaehler].toString());
+                System.out.println(behaelterListe[zaehler].toString(behaelterListe[zaehler]));
 
             } else {
                 betriebsbereit = false;
@@ -99,7 +105,7 @@ public class Kaffeemaschine {
                 break;
             }
         }
-        System.out.println(kaffeemaschinen[5].toString());
+        System.out.println(behaelterListe[5].toString(behaelterListe[5]));
     }
 
 
@@ -107,15 +113,15 @@ public class Kaffeemaschine {
 
         while(!betriebsbereit){
 
-            System.out.println(kaffeemaschinen[zaehler].bezeichner + "Behälter ist LEER\n*****************\nDrücken Sie die 9!\n\n******************");
+            System.out.println(behaelterListe[zaehler].bezeichner + "Behälter ist LEER\n*****************\nDrücken Sie die 9!\n\n******************");
 
             IAuswahl menu = new Menu();
 
             if (menu.programmAuswahl() == WARTUNG) {
 
-                for (AbstractBehaelter b: kaffeemaschinen){
+                for (AbstractBehaelter b: behaelterListe){
 
-                    b.wartung();
+                    b.wartung(b);
                 }
                 betriebsbereit = true;
             }
@@ -133,6 +139,6 @@ public class Kaffeemaschine {
 
     private boolean pruefeFuellstand(int eingabeUser, int zaehler) {
 
-        return ((kaffeemaschinen[zaehler].fuellstand - Rezept.getZutatenVerbrauch[eingabeUser][zaehler]) > 0);
+        return ((behaelterListe[zaehler].fuellstand - Rezept.getZutatenVerbrauch[eingabeUser][zaehler]) > 0);
     }
 }

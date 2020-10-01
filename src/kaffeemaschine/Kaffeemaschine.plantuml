@@ -3,66 +3,23 @@
 title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
+    class kaffeemaschine.AbfallBehaelter {
+        + AbfallBehaelter()
+        + AbfallBehaelter()
+        + toString()
+        + wartung()
+    }
+  }
+  
+
+  namespace kaffeemaschine {
     abstract class kaffeemaschine.AbstractBehaelter {
         + bezeichner : String
         ~ fuellstand : double
         ~ maxFuellMenge : double
         + AbstractBehaelter()
+        + AbstractBehaelter()
         {abstract} + toString()
-    }
-  }
-  
-
-  namespace kaffeemaschine {
-    class kaffeemaschine.BehaelterAbfall {
-        + BehaelterAbfall()
-        + toString()
-        + wartung()
-    }
-  }
-  
-
-  namespace kaffeemaschine {
-    class kaffeemaschine.BehaelterKaffee {
-        + BehaelterKaffee()
-        + toString()
-        + wartung()
-    }
-  }
-  
-
-  namespace kaffeemaschine {
-    class kaffeemaschine.BehaelterKakao {
-        + BehaelterKakao()
-        + toString()
-        + wartung()
-    }
-  }
-  
-
-  namespace kaffeemaschine {
-    class kaffeemaschine.BehaelterMilch {
-        + BehaelterMilch()
-        + toString()
-        + wartung()
-    }
-  }
-  
-
-  namespace kaffeemaschine {
-    class kaffeemaschine.BehaelterWasser {
-        + BehaelterWasser()
-        + toString()
-        + wartung()
-    }
-  }
-  
-
-  namespace kaffeemaschine {
-    class kaffeemaschine.BehaelterZucker {
-        + BehaelterZucker()
-        + toString()
-        + wartung()
     }
   }
   
@@ -85,8 +42,8 @@ title __KAFFEEMASCHINE's Class Diagram__\n
     class kaffeemaschine.Kaffeemaschine {
         ~ PROGRAMM_ABBRUCH : int
         ~ WARTUNG : int
+        ~ behaelterListe : AbstractBehaelter[]
         {static} ~ betriebsbereit : boolean
-        ~ kaffeemaschinen : AbstractBehaelter[]
         + Kaffeemaschine()
         + getraenkZuebereiten()
         + programmAbbruch()
@@ -102,6 +59,16 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   namespace kaffeemaschine {
     class kaffeemaschine.Menu {
         ~ sc : Scanner
+        ~ zeile1 : String
+        ~ zeile10 : String
+        ~ zeile2 : String
+        ~ zeile3 : String
+        ~ zeile4 : String
+        ~ zeile5 : String
+        ~ zeile6 : String
+        ~ zeile7 : String
+        ~ zeile8 : String
+        ~ zeile9 : String
         + Menu()
         + programmAuswahl()
     }
@@ -132,19 +99,9 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   }
   
 
+  kaffeemaschine.AbfallBehaelter .up.|> kaffeemaschine.IWartbar
+  kaffeemaschine.AbfallBehaelter -up-|> kaffeemaschine.AbstractBehaelter
   kaffeemaschine.AbstractBehaelter .up.|> kaffeemaschine.IWartbar
-  kaffeemaschine.BehaelterAbfall .up.|> kaffeemaschine.IWartbar
-  kaffeemaschine.BehaelterAbfall -up-|> kaffeemaschine.AbstractBehaelter
-  kaffeemaschine.BehaelterKaffee .up.|> kaffeemaschine.IWartbar
-  kaffeemaschine.BehaelterKaffee -up-|> kaffeemaschine.ZutatenBehaelter
-  kaffeemaschine.BehaelterKakao .up.|> kaffeemaschine.IWartbar
-  kaffeemaschine.BehaelterKakao -up-|> kaffeemaschine.ZutatenBehaelter
-  kaffeemaschine.BehaelterMilch .up.|> kaffeemaschine.IWartbar
-  kaffeemaschine.BehaelterMilch -up-|> kaffeemaschine.ZutatenBehaelter
-  kaffeemaschine.BehaelterWasser .up.|> kaffeemaschine.IWartbar
-  kaffeemaschine.BehaelterWasser -up-|> kaffeemaschine.ZutatenBehaelter
-  kaffeemaschine.BehaelterZucker .up.|> kaffeemaschine.IWartbar
-  kaffeemaschine.BehaelterZucker -up-|> kaffeemaschine.ZutatenBehaelter
   kaffeemaschine.Menu .up.|> kaffeemaschine.IAuswahl
   kaffeemaschine.ZutatenBehaelter .up.|> kaffeemaschine.IWartbar
   kaffeemaschine.ZutatenBehaelter -up-|> kaffeemaschine.AbstractBehaelter

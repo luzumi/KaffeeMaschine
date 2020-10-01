@@ -14,16 +14,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace kaffeemaschine {
-    class kaffeemaschine.Menu {
-        ~ sc : Scanner
-        + Auswahl()
-        + programmAuswahl()
-    }
-  }
-  
-
-  namespace kaffeemaschine {
-    class kaffeemaschine.BehaelterAbfall {
+    class kaffeemaschine.AbfallBehaelter {
         + BehaelterAbfall()
         + toString()
         + wartung()
@@ -77,6 +68,13 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace kaffeemaschine {
+    interface kaffeemaschine.IAuswahl {
+        {abstract} + programmAuswahl()
+    }
+  }
+  
+
+  namespace kaffeemaschine {
     interface kaffeemaschine.IWartbar {
         {abstract} + wartung()
     }
@@ -85,6 +83,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
     class kaffeemaschine.Kaffeemaschine {
+        ~ PROGRAMM_ABBRUCH : int
         ~ WARTUNG : int
         {static} ~ betriebsbereit : boolean
         ~ kaffeemaschinen : AbstractBehaelter[]
@@ -96,6 +95,15 @@ title __KAFFEEMASCHINE's Class Diagram__\n
         - getraenkAusgeben()
         - pruefeFuellstand()
         - wartenAufWartung()
+    }
+  }
+  
+
+  namespace kaffeemaschine {
+    class kaffeemaschine.Menu {
+        ~ sc : Scanner
+        + Menu()
+        + programmAuswahl()
     }
   }
   
@@ -125,8 +133,8 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   kaffeemaschine.AbstractBehaelter .up.|> kaffeemaschine.IWartbar
-  kaffeemaschine.BehaelterAbfall .up.|> kaffeemaschine.IWartbar
-  kaffeemaschine.BehaelterAbfall -up-|> kaffeemaschine.AbstractBehaelter
+  kaffeemaschine.AbfallBehaelter .up.|> kaffeemaschine.IWartbar
+  kaffeemaschine.AbfallBehaelter -up-|> kaffeemaschine.AbstractBehaelter
   kaffeemaschine.BehaelterKaffee .up.|> kaffeemaschine.IWartbar
   kaffeemaschine.BehaelterKaffee -up-|> kaffeemaschine.ZutatenBehaelter
   kaffeemaschine.BehaelterKakao .up.|> kaffeemaschine.IWartbar
@@ -137,6 +145,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   kaffeemaschine.BehaelterWasser -up-|> kaffeemaschine.ZutatenBehaelter
   kaffeemaschine.BehaelterZucker .up.|> kaffeemaschine.IWartbar
   kaffeemaschine.BehaelterZucker -up-|> kaffeemaschine.ZutatenBehaelter
+  kaffeemaschine.Menu .up.|> kaffeemaschine.IAuswahl
   kaffeemaschine.ZutatenBehaelter .up.|> kaffeemaschine.IWartbar
   kaffeemaschine.ZutatenBehaelter -up-|> kaffeemaschine.AbstractBehaelter
 
