@@ -33,12 +33,6 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace kaffeemaschine {
-    class kaffeemaschine.KaffeemaschineTest {
-    }
-  }
-  
-
-  namespace kaffeemaschine {
     class kaffeemaschine.Menu {
     }
   }

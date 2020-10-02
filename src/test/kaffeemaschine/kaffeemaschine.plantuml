@@ -18,6 +18,8 @@ title __KAFFEEMASCHINE's Class Diagram__\n
     class test.kaffeemaschine.MenuTest {
         + after()
         + before()
+        + testMenuCheckMenuKorrekt()
+        + testProgrammAuswahlScannerInput_5()
     }
   }
   

@@ -21,7 +21,7 @@ public class StarteKaffeeMaschine {
 
         while (Kaffeemaschine.betriebsbereit) {
 
-            Menu.menu();
+            System.out.println(Menu.menu());
             kaffeemaschine.zutatenEntnahme(Menu.programmAuswahl());
         }
     }

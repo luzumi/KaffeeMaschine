@@ -60,32 +60,21 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace kaffeemaschine {
-    class kaffeemaschine.KaffeemaschineTest {
-        + getraenkZuebereiten()
-        + programmAbbruch()
-        + setUp()
-        + tearDown()
-        + wartungInitiieren()
-        + zutatenEntnahme()
-    }
-  }
-  
-
-  namespace kaffeemaschine {
     class kaffeemaschine.Menu {
-        {static} ~ ZEILE_1 : String
-        {static} ~ ZEILE_10 : String
-        {static} ~ ZEILE_2 : String
-        {static} ~ ZEILE_3 : String
-        {static} ~ ZEILE_4 : String
-        {static} ~ ZEILE_5 : String
-        {static} ~ ZEILE_6 : String
-        {static} ~ ZEILE_7 : String
-        {static} ~ ZEILE_8 : String
-        {static} ~ ZEILE_9 : String
+        {static} + ZEILE_1 : String
+        {static} + ZEILE_10 : String
+        {static} + ZEILE_2 : String
+        {static} + ZEILE_3 : String
+        {static} + ZEILE_4 : String
+        {static} + ZEILE_5 : String
+        {static} + ZEILE_6 : String
+        {static} + ZEILE_7 : String
+        {static} + ZEILE_8 : String
+        {static} + ZEILE_9 : String
+        {static} ~ AUSWAHL : String
         + Menu()
         {static} + menu()
-        {static} ~ programmAuswahl()
+        {static} + programmAuswahl()
     }
   }
   

@@ -47,15 +47,15 @@ public class Kaffeemaschine {
             behaelterListe[5].setFuellstand( behaelterListe[5].getFuellstand() + 1);
             getraenkZuebereiten(eingabeAuswahl);
             getraenkAusgeben(eingabeAuswahl);
-            IMenu.menu();
+            System.out.println(Menu.menu());
         }
-        else {
+        else {                                                                          //TODO Exeptions
             if(eingabeAuswahl==PROGRAMM_ABBRUCH){
                 programmAbbruch("Auswahl \"0\" -> Programmabruch");
             }
             else if(eingabeAuswahl == WARTUNG){
                 wartungInitiieren();
-                IMenu.menu();
+                System.out.println(Menu.menu());
             }
             else {
                 programmAbbruch("Falsche Eingabe -> Programmabruch");
@@ -115,8 +115,7 @@ public class Kaffeemaschine {
 
             System.out.println(behaelterListe[zaehler].getBezeichner() + "Behälter ist LEER\n*****************\nDrücken Sie die 9!\n\n******************");
 
-            IMenu.menu();
-            Menu menu = new Menu();
+            System.out.println(Menu.menu());
 
             if (Menu.programmAuswahl() == WARTUNG) {
 

@@ -13,26 +13,26 @@ import java.util.Scanner;
  */
 public class Menu implements IMenu{
 
-    final static String ZEILE_1 = "****** Kaffeemaschine ******";
-    final static String ZEILE_2 = "============================";
-    final static String ZEILE_3 = "Auswahl:____________________";
-    final static String ZEILE_4 = "1.) Kaffee schwarz__________";
-    final static String ZEILE_5 = "2.) Kaffee mit Zucker_______";
-    final static String ZEILE_6 = "3.) Kaffee mit Milch________";
-    final static String ZEILE_7 = "4.) Kaffee mit Milch/Zucker_";
-    final static String ZEILE_8 = "5.) Kakao___________________";
-    final static String ZEILE_9 = "9.) _________________Wartung";
-    final static String ZEILE_10 = "0.) _________________Abbruch";
+    public final static String ZEILE_1 = "****** Kaffeemaschine ******";
+    public final static String ZEILE_2 = "============================";
+    public final static String ZEILE_3 = "Auswahl:____________________";
+    public final static String ZEILE_4 = "1.) Kaffee schwarz__________";
+    public final static String ZEILE_5 = "2.) Kaffee mit Zucker_______";
+    public final static String ZEILE_6 = "3.) Kaffee mit Milch________";
+    public final static String ZEILE_7 = "4.) Kaffee mit Milch/Zucker_";
+    public final static String ZEILE_8 = "5.) Kakao___________________";
+    public final static String ZEILE_9 = "9.) _________________Wartung";
+    public final static String ZEILE_10 = "0.) _________________Abbruch";
+
+    final static String AUSWAHL = ZEILE_1 + "\n" + ZEILE_2 + "\n" + ZEILE_3 + "\n" + ZEILE_4 + "\n" +
+        ZEILE_5 + "\n" + ZEILE_6 + "\n" + ZEILE_7 + "\n" + ZEILE_8 + "\n" + ZEILE_9 + "\n" + ZEILE_10;
 
     public Menu() {
     }
 
 
-
-    public static void menu() {
-        System.out.printf("\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n",
-                Menu.ZEILE_1, Menu.ZEILE_2, Menu.ZEILE_3, Menu.ZEILE_4, Menu.ZEILE_5, Menu.ZEILE_6, Menu.ZEILE_7, Menu.ZEILE_8, Menu.ZEILE_9, Menu.ZEILE_10);
-
+    public static String menu() {
+        return AUSWAHL;
     }
 
     /**
@@ -40,7 +40,7 @@ public class Menu implements IMenu{
      */
 
 
-    static int programmAuswahl() {
+    public static int programmAuswahl() {
         return Integer.parseInt(new Scanner(System.in).nextLine());
     }
 }
