@@ -15,5 +15,5 @@ public interface IWartbar {
      * stellt für alle wartbaren Behälter die Methode wartung() bereit
      * Darin wird die Wartung in den Klassen spezifiziert
      */
-    public String wartung(AbstractBehaelter behaelter);
+    String wartung(AbstractBehaelter behaelter);
 }

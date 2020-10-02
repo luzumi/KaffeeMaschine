@@ -16,43 +16,37 @@ public class ZutatenBehaelter extends AbstractBehaelter implements IWartbar {
 
     @Override
     public String toString(AbstractBehaelter behaelter) {
-        switch(behaelter.bezeichner){
-            case "Wasser":
-                return "Wasserbehaelter Fuellmenge = "+ this.fuellstand;
-            case "Kaffee":
-                return "Kaffeebehaelter Fuellmenge = "+ this.fuellstand;
-            case "Kakao":
-                return "Kakaobehaelter Fuellmenge = "+ this.fuellstand;
-            case "Zucker":
-                return "Zuckerbehaelter Fuellmenge = "+ this.fuellstand;
-            case "Milch":
-                return "Milchbehaelter Fuellmenge = "+ this.fuellstand;
-            default:
-                return "Fehler";
-        }
+        return switch (behaelter.getBezeichner()) {
+            case "Wasser" -> "Wasserbehaelter Fuellmenge = " + this.getFuellstand();
+            case "Kaffee" -> "Kaffeebehaelter Fuellmenge = " + this.getFuellstand();
+            case "Kakao" -> "Kakaobehaelter Fuellmenge = " + this.getFuellstand();
+            case "Zucker" -> "Zuckerbehaelter Fuellmenge = " + this.getFuellstand();
+            case "Milch" -> "Milchbehaelter Fuellmenge = " + this.getFuellstand();
+            default -> "Fehler";
+        };
     }
 
 
     @Override
     public String wartung(AbstractBehaelter behaelter) {
-        switch (behaelter.bezeichner){
+        switch ( behaelter.getBezeichner()){
             case "Wasser":
-                this.fuellstand = 10;
+                this.setFuellstand(this.getMaxFuellMenge());
                 return "Wasser wieder aufgefüllt";
             case "Kaffee":
-                this.fuellstand = 1;
+                this.setFuellstand(this.getMaxFuellMenge());
                 return "Kaffee wieder aufgefüllt";
             case "Kakao":
-                this.fuellstand = 1;
+                this.setFuellstand(this.getMaxFuellMenge());
                 return "Kakao wieder aufgefüllt";
             case "Zucker":
-                this.fuellstand = 1;
+                this.setFuellstand(this.getMaxFuellMenge());
                 return "Zucker wieder aufgefüllt";
             case "Milch":
-                this.fuellstand = 1;
+                this.setFuellstand(this.getMaxFuellMenge());
                 return "Milch wieder aufgefüllt";
             case "Abfall":
-                this.fuellstand = 100;
+                this.setFuellstand(this.getMaxFuellMenge());
                 return "Abfallbehälter entleert";
             default:
                 return "Wartungsfehler";

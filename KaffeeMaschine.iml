@@ -27,5 +27,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="JavaHelperlein" level="project" />
+    <orderEntry type="library" name="mockito-core-3.5.13" level="project" />
   </component>
 </module>

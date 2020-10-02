@@ -13,14 +13,7 @@ package kaffeemaschine;
  */
 public class AbfallBehaelter extends AbstractBehaelter implements IWartbar {
 
-    public AbfallBehaelter(String bezeichner) {
 
-        super(bezeichner);
-
-        this.maxFuellMenge = 100;
-
-        this.fuellstand = 0;
-    }
 
     public AbfallBehaelter(String abfall, double fuellstand, double maxFuellMenge) {
         super(abfall, (int)fuellstand, (int)maxFuellMenge);
@@ -29,13 +22,13 @@ public class AbfallBehaelter extends AbstractBehaelter implements IWartbar {
 
     @Override
     public String toString(AbstractBehaelter behaelter) {
-        return "Abfallbehaelter Einheiten bis Leerung = "+ (int)behaelter.fuellstand;
+        return "Abfallbehaelter gefüllt (%): "+ (int)behaelter.getFuellstand();
     }
 
 
     @Override
     public String wartung(AbstractBehaelter behaelter) {
-        behaelter.fuellstand = 0;
+        this.setFuellstand(0);
         return "Abfallbehälter entleert";
     }
 }

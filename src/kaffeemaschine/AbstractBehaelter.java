@@ -9,13 +9,26 @@ package kaffeemaschine;/*corat
  * @author corat
  */
 public abstract class AbstractBehaelter implements IWartbar {
-    public String bezeichner;
-    double fuellstand;
-    double maxFuellMenge;
+    private final String bezeichner;
+    private double fuellstand;
+    final private double maxFuellMenge;
 
-    public AbstractBehaelter(String bezeichner) {
-        this.bezeichner = bezeichner;
+    public String getBezeichner() {
+        return bezeichner;
     }
+
+    public double getFuellstand() {
+        return fuellstand;
+    }
+
+    public void setFuellstand(double fuellstand) {
+        this.fuellstand = fuellstand;
+    }
+
+    public double getMaxFuellMenge() {
+        return maxFuellMenge;
+    }
+
 
     public AbstractBehaelter(String rezeptZutat, double fuellstand, double maxFuellMenge) {
         this.bezeichner = rezeptZutat;

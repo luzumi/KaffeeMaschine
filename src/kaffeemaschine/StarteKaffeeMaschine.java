@@ -18,11 +18,11 @@ public class StarteKaffeeMaschine {
 
         Kaffeemaschine kaffeemaschine = new Kaffeemaschine();
 
-        IAuswahl menu = new Menu();
 
         while (Kaffeemaschine.betriebsbereit) {
 
-            kaffeemaschine.zutatenEntnahme(menu.programmAuswahl());
+            Menu.menu();
+            kaffeemaschine.zutatenEntnahme(Menu.programmAuswahl());
         }
     }
 }

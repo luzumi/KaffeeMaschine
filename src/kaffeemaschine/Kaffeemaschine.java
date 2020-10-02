@@ -44,10 +44,10 @@ public class Kaffeemaschine {
     public void zutatenEntnahme(int eingabeAuswahl) {
 
         if(eingabeAuswahl > 0 && eingabeAuswahl <= Rezept.AuswahlProdukt.length) {
-            behaelterListe[5].fuellstand += 10;
+            behaelterListe[5].setFuellstand( behaelterListe[5].getFuellstand() + 1);
             getraenkZuebereiten(eingabeAuswahl);
             getraenkAusgeben(eingabeAuswahl);
-            new Menu();
+            IMenu.menu();
         }
         else {
             if(eingabeAuswahl==PROGRAMM_ABBRUCH){
@@ -55,7 +55,7 @@ public class Kaffeemaschine {
             }
             else if(eingabeAuswahl == WARTUNG){
                 wartungInitiieren();
-                new Menu();
+                IMenu.menu();
             }
             else {
                 programmAbbruch("Falsche Eingabe -> Programmabruch");
@@ -75,7 +75,7 @@ public class Kaffeemaschine {
 
         for (int zaehler = 0; zaehler < behaelterListe.length; zaehler++){
 
-            if(behaelterListe[zaehler].fuellstand < behaelterListe[zaehler].maxFuellMenge ){
+            if(behaelterListe[zaehler].getFuellstand() < behaelterListe[zaehler].getMaxFuellMenge()){
 
                 System.out.println(this.behaelterListe[zaehler].wartung(behaelterListe[zaehler]));
             }
@@ -93,7 +93,7 @@ public class Kaffeemaschine {
 
             if (pruefeFuellstand(eingabeAuswahl - 1, zaehler)) {
 
-                behaelterListe[zaehler].fuellstand -= Rezept.getZutatenVerbrauch[eingabeAuswahl - 1][zaehler];
+                behaelterListe[zaehler].setFuellstand(behaelterListe[zaehler].getFuellstand() - Rezept.getZutatenVerbrauch[eingabeAuswahl - 1][zaehler]);
 
                 System.out.println(behaelterListe[zaehler].toString(behaelterListe[zaehler]));
 
@@ -113,11 +113,12 @@ public class Kaffeemaschine {
 
         while(!betriebsbereit){
 
-            System.out.println(behaelterListe[zaehler].bezeichner + "Behälter ist LEER\n*****************\nDrücken Sie die 9!\n\n******************");
+            System.out.println(behaelterListe[zaehler].getBezeichner() + "Behälter ist LEER\n*****************\nDrücken Sie die 9!\n\n******************");
 
-            IAuswahl menu = new Menu();
+            IMenu.menu();
+            Menu menu = new Menu();
 
-            if (menu.programmAuswahl() == WARTUNG) {
+            if (Menu.programmAuswahl() == WARTUNG) {
 
                 for (AbstractBehaelter b: behaelterListe){
 
@@ -139,6 +140,6 @@ public class Kaffeemaschine {
 
     private boolean pruefeFuellstand(int eingabeUser, int zaehler) {
 
-        return ((behaelterListe[zaehler].fuellstand - Rezept.getZutatenVerbrauch[eingabeUser][zaehler]) > 0);
+        return ((behaelterListe[zaehler].getFuellstand() - Rezept.getZutatenVerbrauch[eingabeUser][zaehler]) > 0);
     }
 }
