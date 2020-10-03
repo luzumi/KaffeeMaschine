@@ -38,9 +38,9 @@ public abstract class AbstractBehaelter implements IWartbar {
 
     /**
      *  Jeder Behälter bekommt die Ausgabefunktion
+     * @param behaelter Liste benötigt zur Selection des Behälternamens
      * @return fuellstand des Behälters und Bestätigung der Aktion in der Console
      */
-
     public abstract String toString(AbstractBehaelter behaelter);
 
 }

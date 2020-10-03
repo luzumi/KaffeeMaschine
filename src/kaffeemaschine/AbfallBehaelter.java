@@ -22,7 +22,7 @@ public class AbfallBehaelter extends AbstractBehaelter implements IWartbar {
 
     @Override
     public String toString(AbstractBehaelter behaelter) {
-        return "Abfallbehaelter gefüllt (%): "+ (int)behaelter.getFuellstand();
+        return "\tAbfallbehaelter: . ."+ (int)behaelter.getFuellstand() + " %";
     }
 
 

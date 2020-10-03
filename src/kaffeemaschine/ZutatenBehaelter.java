@@ -17,14 +17,31 @@ public class ZutatenBehaelter extends AbstractBehaelter implements IWartbar {
     @Override
     public String toString(AbstractBehaelter behaelter) {
         return switch (behaelter.getBezeichner()) {
-            case "Wasser" -> "Wasserbehaelter Fuellmenge = " + this.getFuellstand();
-            case "Kaffee" -> "Kaffeebehaelter Fuellmenge = " + this.getFuellstand();
-            case "Kakao" -> "Kakaobehaelter Fuellmenge = " + this.getFuellstand();
-            case "Zucker" -> "Zuckerbehaelter Fuellmenge = " + this.getFuellstand();
-            case "Milch" -> "Milchbehaelter Fuellmenge = " + this.getFuellstand();
+            case "Wasser" -> "\nFuellmengen:________________\n" + "\tKaffeebehaelter: . ." + fuellstandRunden();
+            case "Kaffee" -> "\tKaffeebehaelter: . " + fuellstandRunden();
+            case "Kakao" ->  "\tKakaobehaelter:. . " + fuellstandRunden();
+            case "Zucker" -> "\tZuckerbehaelter: . " + fuellstandRunden();
+            case "Milch" ->  "\tMilchbehaelter:. . " + fuellstandRunden();
             default -> "Fehler";
         };
     }
+
+    private String fuellstandRunden() {
+
+        if ((int)this.getFuellstand() >= Constants.ZEHN_ODER_GROESSER){
+            return "" + Math.round(100 * this.getFuellstand()) / 100.0;
+        }
+        else if ((int)this.getFuellstand() > 1) {
+            return " " + Math.round(100 * this.getFuellstand()) / 100.0;
+        }
+        else if(Double.toString(this.getFuellstand()).length() == Constants.LAENGE_DREI){
+            return ". " + Math.round(1000 * this.getFuellstand()) / 1000.0;
+        }
+        else {
+            return "." + Math.round(100 * this.getFuellstand()) / 100.0;
+        }
+    }
+
 
 
     @Override

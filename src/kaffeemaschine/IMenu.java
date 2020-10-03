@@ -8,18 +8,13 @@ package kaffeemaschine;
 
 import java.util.Scanner;
 
+/**
+ * @author corat
+ */
 public interface IMenu {
 
     static void menu() {
 
     }
 
-    /**
-     * @return Auswahl des vom User gewählten Programms
-     */
-
-
-    static int programmAuswahl() {
-        return 0;
-    }
 }
