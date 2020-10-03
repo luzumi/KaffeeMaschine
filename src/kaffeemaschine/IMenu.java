@@ -13,6 +13,9 @@ import java.util.Scanner;
  */
 public interface IMenu {
 
+    /**erstellt Menu der KaffeeMaschine
+     * 
+     */
     static void menu() {
 
     }

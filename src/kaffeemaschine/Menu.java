@@ -34,6 +34,27 @@ public class Menu implements IMenu{
     public static int programmAuswahl() {
         return Integer.parseInt(new Scanner(System.in).nextLine());
     }
+
+    public static int programmAuswahl(String promptMsg, String errorMsg) {
+
+        int num = 0;
+        boolean isValid = false;
+
+        while(!isValid) {
+            System.out.println(promptMsg);
+            String strInput = new Scanner(System.in).nextLine();
+
+            try {
+                num = Integer.parseInt(strInput);
+
+                isValid = true;
+            } catch (NumberFormatException var7) {
+                System.out.println(errorMsg);
+            }
+        }
+
+        return num;
+    }
 }
 
 

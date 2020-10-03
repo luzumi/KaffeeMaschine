@@ -37,7 +37,7 @@ public class MenuTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        assertEquals( "5", Integer.toString(Menu.programmAuswahl()));
+        assertEquals( "5", Integer.toString(Menu.programmAuswahl("Programm auswählen", "")));
 
     }
 

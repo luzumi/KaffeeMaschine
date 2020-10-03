@@ -124,7 +124,7 @@ public class Kaffeemaschine {
 
                 System.out.println(Menu.menu());
 
-                if (Menu.programmAuswahl() == Constants.WARTUNG) {
+                if (Menu.programmAuswahl("Programm auswählen", "") == Constants.WARTUNG) {
 
                     for (AbstractBehaelter b : behaelterListe) {
 
