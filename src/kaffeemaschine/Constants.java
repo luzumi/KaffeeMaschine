@@ -13,10 +13,10 @@ package kaffeemaschine;
 public class Constants {
 
     public static final int ABFALLBEHAELTER = 5;
-    public static final int ZEHN_ODER_GROESSER = 10;
+    public static final int ZEHN = 10;
     public static final int WARTUNG = 9;
     public static final int PROGRAMM_ABBRUCH = 0;
-    public static final int LAENGE_DREI = 3;
+    public static final int DREI = 3;
 
     public final static String ZEILE_1 = "****** Kaffeemaschine ******";
     public final static String ZEILE_2 = "============================";

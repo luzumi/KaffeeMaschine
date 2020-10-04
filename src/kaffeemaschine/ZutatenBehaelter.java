@@ -26,15 +26,15 @@ public class ZutatenBehaelter extends AbstractBehaelter implements IWartbar {
         };
     }
 
-    private String fuellstandRunden() {
+    public String fuellstandRunden() {
 
-        if ((int)this.getFuellstand() >= Constants.ZEHN_ODER_GROESSER){
+        if ((int)this.getFuellstand() >= Constants.ZEHN){
             return "" + Math.round(100 * this.getFuellstand()) / 100.0;
         }
         else if ((int)this.getFuellstand() > 1) {
             return " " + Math.round(100 * this.getFuellstand()) / 100.0;
         }
-        else if(Double.toString(this.getFuellstand()).length() == Constants.LAENGE_DREI){
+        else if(Double.toString(this.getFuellstand()).length() == Constants.DREI){
             return ". " + Math.round(1000 * this.getFuellstand()) / 1000.0;
         }
         else {
