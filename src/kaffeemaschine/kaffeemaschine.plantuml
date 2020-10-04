@@ -12,6 +12,14 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace kaffeemaschine {
+    class kaffeemaschine.AbfallBehaelterVollException {
+        + AbfallBehaelterVollException()
+        + toString()
+    }
+  }
+  
+
+  namespace kaffeemaschine {
     abstract class kaffeemaschine.AbstractBehaelter {
         - bezeichner : String
         - fuellstand : double
@@ -27,9 +35,29 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace kaffeemaschine {
+    class kaffeemaschine.Constants {
+        {static} + ABFALLBEHAELTER : int
+        {static} + LAENGE_DREI : int
+        {static} + PROGRAMM_ABBRUCH : int
+        {static} + WARTUNG : int
+        {static} + ZEHN_ODER_GROESSER : int
+        {static} + ZEILE_1 : String
+        {static} + ZEILE_10 : String
+        {static} + ZEILE_2 : String
+        {static} + ZEILE_3 : String
+        {static} + ZEILE_4 : String
+        {static} + ZEILE_5 : String
+        {static} + ZEILE_6 : String
+        {static} + ZEILE_7 : String
+        {static} + ZEILE_8 : String
+        {static} + ZEILE_9 : String
+    }
+  }
+  
+
+  namespace kaffeemaschine {
     interface kaffeemaschine.IMenu {
         {static} + menu()
-        {static} + programmAuswahl()
     }
   }
   
@@ -43,8 +71,6 @@ title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
     class kaffeemaschine.Kaffeemaschine {
-        ~ PROGRAMM_ABBRUCH : int
-        ~ WARTUNG : int
         ~ behaelterListe : AbstractBehaelter[]
         {static} ~ betriebsbereit : boolean
         + Kaffeemaschine()
@@ -53,7 +79,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
         + wartungInitiieren()
         + zutatenEntnahme()
         - getraenkAusgeben()
-        - pruefeFuellstand()
+        - pruefeZutatenFuellstand()
         - wartenAufWartung()
     }
   }
@@ -61,16 +87,6 @@ title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
     class kaffeemaschine.Menu {
-        {static} + ZEILE_1 : String
-        {static} + ZEILE_10 : String
-        {static} + ZEILE_2 : String
-        {static} + ZEILE_3 : String
-        {static} + ZEILE_4 : String
-        {static} + ZEILE_5 : String
-        {static} + ZEILE_6 : String
-        {static} + ZEILE_7 : String
-        {static} + ZEILE_8 : String
-        {static} + ZEILE_9 : String
         {static} ~ AUSWAHL : String
         + Menu()
         {static} + menu()
@@ -95,10 +111,19 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace kaffeemaschine {
+    class kaffeemaschine.ZutatLeerException {
+        + ZutatLeerException()
+        + toString()
+    }
+  }
+  
+
+  namespace kaffeemaschine {
     class kaffeemaschine.ZutatenBehaelter {
         + ZutatenBehaelter()
         + toString()
         + wartung()
+        - fuellstandRunden()
     }
   }
   

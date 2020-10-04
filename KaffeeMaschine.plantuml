@@ -9,7 +9,19 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace kaffeemaschine {
+    class kaffeemaschine.AbfallBehaelterVollException {
+    }
+  }
+  
+
+  namespace kaffeemaschine {
     abstract class kaffeemaschine.AbstractBehaelter {
+    }
+  }
+  
+
+  namespace kaffeemaschine {
+    class kaffeemaschine.Constants {
     }
   }
   
@@ -46,6 +58,12 @@ title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
     class kaffeemaschine.StarteKaffeeMaschine {
+    }
+  }
+  
+
+  namespace kaffeemaschine {
+    class kaffeemaschine.ZutatLeerException {
     }
   }
   
