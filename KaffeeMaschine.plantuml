@@ -2,6 +2,18 @@
 
 title __KAFFEEMASCHINE's Class Diagram__\n
 
+  namespace gui {
+    class gui.GuiKaffeeMaschine {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.Menu {
+    }
+  }
+  
+
   namespace kaffeemaschine {
     class kaffeemaschine.AbfallBehaelter {
     }
@@ -22,6 +34,12 @@ title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
     class kaffeemaschine.Constants {
+    }
+  }
+  
+
+  namespace kaffeemaschine {
+    class kaffeemaschine.GuiStart {
     }
   }
   

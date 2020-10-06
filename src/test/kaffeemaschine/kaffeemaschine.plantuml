@@ -37,6 +37,11 @@ title __KAFFEEMASCHINE's Class Diagram__\n
     class test.kaffeemaschine.ZutatenBehaelterTest {
         + after()
         + before()
+        + testAbfallBehaelterVollException()
+        + testFuellstandRundenAufKorrekteAusgabe()
+        + testFuellstandRundenAufKorrekteAusgabeDoubleLenght1()
+        + testFuellstandRundenAufKorrekteAusgabeDoubleLenght3()
+        + testFuellstandRundenAufKorrekteAusgabeDoubleLenght4()
         + testToStringBehaelterKaffeeFuellstand0()
         + testToStringBehaelterKaffeeFuellstand05()
         + testToStringBehaelterKakaoFuellstand0()
@@ -57,6 +62,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
         + testWartungBehaelterWasserRueckgabeString()
         + testWartungBehaelterZuckerFuellstand1()
         + testWartungBehaelterZuckerRueckgabeString()
+        + testZutatLeerException()
     }
   }
   
