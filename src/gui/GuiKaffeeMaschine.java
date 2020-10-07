@@ -12,7 +12,7 @@ import java.awt.*;
 public class GuiKaffeeMaschine {
     static ImageIcon betriebsBereitImage = new ImageIcon("E:\\intelliJ-Workspace\\KaffeeMaschine\\src\\Gui\\Bilder\\WMF_Professional_Coffeemachines_Betriebspause_00.jpg");
 
-    public GuiKaffeeMaschine(String[] args) {
+    public GuiKaffeeMaschine(String[] args) throws Exception {
 
         JPanel panel = createPanel();
         JFrame frame = createFrame();
@@ -20,7 +20,7 @@ public class GuiKaffeeMaschine {
         frame.setVisible(true);
     }
 
-    private static JPanel createPanel() {
+    private static JPanel createPanel() throws Exception {
 
         JPanel mainPanel = new JPanel();
         mainPanel.setSize(betriebsBereitImage.getIconWidth(), betriebsBereitImage.getIconHeight());
@@ -31,7 +31,9 @@ public class GuiKaffeeMaschine {
         //button.setAlignmentX(0.5f);
         //button.setAlignmentY(0.5f);
 
-        JPanel popupPanel = createPopupPanel(button);
+        //JPanel popupPanel = createPopupPanel(button);
+        //JPanel popupPanel = createPopupPanel(button);
+        JPanel popupPanel = createMenu(button);
         popupPanel.setSize(304, 459);
 
         //popupPanel.setAlignmentX(0.1f);
@@ -90,15 +92,15 @@ public class GuiKaffeeMaschine {
         return frame;
     }
 
-    private static JPanel createMenu() {
+    private static JPanel createMenu(JComponent overlapComponent) throws Exception {
         JPanel jPanel = new JPanel();
 
-        Menu.invoke();
-        JPanel menuOben = new JPanel(new BorderLayout());
-        menuOben.add(Menu.jbtnMenu);
-        menuOben.add(Menu.jbtnObenrechts);
+        jPanel.add(Menu.invoke());
+
+        jPanel.setVisible(false);
 
 
         return jPanel;
+
     }
 }
