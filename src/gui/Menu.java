@@ -9,165 +9,162 @@ package gui;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class Menu {
 
-    static JButton jbtnlinks, jbtnMenu, jbtnObenrechts, jbtnKaffeeSchwarz, jbtnKaffeeSchwarzWeiss, jbtnKaffeeSchwarzWeissZucker, jbtnMilch,
-            jbtnrechts, jbtnKakao, jbtnfree1, jbtnfree2, jbtnfree3, jbtnWartung, jbtninfo, jbtnBlankoRechts;
-
-
-    public static JPanel panelMenu() throws Exception {
-
-        return invoke();
-    }
+    static String bildPfad = "E:\\intelliJ-Workspace\\KaffeeMaschine\\src\\gui\\Bilder\\";
+    static JButton[] buttonliste = new JButton[15];
+    static ImageIcon[] imageIcons = new ImageIcon[15];
+    static String[] buttonTexte = new String[]{
+        /* 0 */    "jbtnKaffeeSchwarz",
+        /* 1 */    "jbtnKaffeeSchwarzWeiss",
+        /* 2 */    "jbtnKaffeeSchwarzWeissZucker",
+        /* 3 */    "jbtnMilch",
+        /* 4 */    "jbtnKakao",
+        /* 5 */    "jbtnWartung",
+        /* 6 */    "jbtninfo",
+        /* 7 */    "jbtnfree1",
+        /* 8 */    "jbtnfree2",
+        /* 9 */    "jbtnfree3",
+        /* 10 */    "jbtnBlankoRechts",
+        /* 11 */    "jbtnrechts",
+        /* 12 */    "jbtnlinks",
+        /* 13 */    "jbtnMenu",
+        /* 14 */    "jbtnObenrechts" };
 
 
     public static JPanel invoke() throws Exception {
-        String bildPfad = "E:\\intelliJ-Workspace\\KaffeeMaschine\\src\\gui\\Bilder\\";
 
         legeButtonsAn();
-        erstelleBildPfade(bildPfad);
 
-        JPanel menu = new JPanel(new BorderLayout());
-
-        JPanel menuBox = new JPanel(new BorderLayout());
 
         JPanel menuOben = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
-        menuOben.add(jbtnMenu);
-        menuOben.add(jbtnObenrechts);
+        menuOben.add(buttonliste[13]);
+        menuOben.add(buttonliste[11]);
 
         JPanel menuMitteOben = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
+        menuMitteOben.add(buttonliste[0]);
+        menuMitteOben.add(buttonliste[1]);
+        menuMitteOben.add(buttonliste[2]);
+        menuMitteOben.add(buttonliste[3]);
 
         JPanel menuMitteUnten = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
-        menuMitteOben.add(jbtnKaffeeSchwarz);
-        menuMitteOben.add(jbtnKaffeeSchwarzWeiss);
-        menuMitteOben.add(jbtnKaffeeSchwarzWeissZucker);
-        menuMitteOben.add(jbtnMilch);
-        menuMitteUnten.add(jbtnfree1);
-        menuMitteUnten.add(jbtnfree2);
-        menuMitteUnten.add(jbtnfree3);
-        menuMitteUnten.add(jbtnKakao);
+        menuMitteUnten.add(buttonliste[7]);
+        menuMitteUnten.add(buttonliste[8]);
+        menuMitteUnten.add(buttonliste[9]);
+        menuMitteUnten.add(buttonliste[4]);
 
         JPanel menuMitteOhneRechts = new JPanel(new BorderLayout());
         menuMitteOhneRechts.add(menuMitteOben, BorderLayout.NORTH);
         menuMitteOhneRechts.add(menuMitteUnten, BorderLayout.SOUTH);
 
-
         JPanel menuMitteRechts = new JPanel(new BorderLayout());
-        menuMitteRechts.add(jbtnBlankoRechts, BorderLayout.WEST);
+        menuMitteRechts.add(buttonliste[10], BorderLayout.WEST);
 
         JPanel menuMitteGesamt = new JPanel(new BorderLayout());
         menuMitteGesamt.add(menuMitteOhneRechts, BorderLayout.WEST);
         menuMitteGesamt.add(menuMitteRechts, BorderLayout.EAST);
 
         JPanel menuUnten = new JPanel(new FlowLayout(FlowLayout.LEFT, 0,0));
+        menuUnten.add(buttonliste[5]);
+        menuUnten.add(buttonliste[6]);
 
-        menuUnten.add(jbtnWartung);
-        menuUnten.add(jbtninfo);
-
+        JPanel menuBox = new JPanel(new BorderLayout());
         menuBox.add(menuOben, BorderLayout.NORTH);
         menuBox.add(menuMitteGesamt, BorderLayout.CENTER);
         menuBox.add(menuUnten, BorderLayout.SOUTH);
 
+        JPanel finalMenu = new JPanel(new BorderLayout());
+        finalMenu.add(buttonliste[12],  BorderLayout.EAST);
+        finalMenu.add(menuBox, BorderLayout.CENTER);
+        finalMenu.setLayout(new GridBagLayout());
+        finalMenu.setBounds(1110,110,110,330);
 
-
-        menu.add(menuBox, BorderLayout.CENTER);
-        menu.add(jbtnlinks,  BorderLayout.WEST);
-
-        return menu;
         //TODO Größe Menu anpassen und positionieren
+        return finalMenu;
 
     }
 
+    private static void createAndSetIcons(String bildPfad) {
 
-    private static void erstelleBildPfade(String bildPfad) {
-
-        ImageIcon linksImage = new ImageIcon(bildPfad + "blanko_Links.jpg");
-        ImageIcon menuImage = new ImageIcon(bildPfad + "button_Menu.jpg");
-        ImageIcon obenrechtsImage = new ImageIcon(bildPfad + "blanko_ObenRechts.jpg");
-        ImageIcon kaffeeSchwarz = new ImageIcon(bildPfad + "Button_KaffeeSchwarz.jpg");
-        ImageIcon kaffeeSchwarzWeiss = new ImageIcon(bildPfad + "Button_KaffeeSchwarzWeiss.jpg");
-        ImageIcon kaffeeSchwarzWeissZucker = new ImageIcon(bildPfad + "Button_KaffeeSchwarzWeissZucker.jpg");
-        ImageIcon milch = new ImageIcon(bildPfad + "Button_Milch.jpg");
-        ImageIcon rechts = new ImageIcon(bildPfad + "blanko_Rechts.jpg");
-        ImageIcon kakao = new ImageIcon(bildPfad + "Button_Kakao.jpg");
-        ImageIcon free1 = new ImageIcon(bildPfad + "Button_Free1.jpg");
-        ImageIcon free2 = new ImageIcon(bildPfad + "Button_Free2.jpg");
-        ImageIcon free3 = new ImageIcon(bildPfad + "Button_Free3.jpg");
-        ImageIcon wartung = new ImageIcon(bildPfad + "Button_Wartung.jpg");
-        ImageIcon info = new ImageIcon(bildPfad + "Button_Info.jpg");
-        ImageIcon blankoRechts = new ImageIcon(bildPfad + "blanko_Rechts.jpg");
-
-        setIconAufButtons(linksImage, menuImage, obenrechtsImage, kaffeeSchwarz, kaffeeSchwarzWeiss, kaffeeSchwarzWeissZucker, milch, rechts, kakao, free1, free2, free3, wartung, info, blankoRechts);
-    }
-
-
-    private static void setIconAufButtons(ImageIcon linksImage, ImageIcon menuImage, ImageIcon obenrechtsImage, ImageIcon kaffeeSchwarz, ImageIcon kaffeeSchwarzWeiss, ImageIcon kaffeeSchwarzWeissZucker, ImageIcon milch, ImageIcon rechts, ImageIcon kakao, ImageIcon free1, ImageIcon free2, ImageIcon free3, ImageIcon wartung, ImageIcon info, ImageIcon blankoRechts) {
-
-        jbtnKaffeeSchwarz.setIcon(kaffeeSchwarz);
-        jbtnKaffeeSchwarzWeiss.setIcon(kaffeeSchwarzWeiss);
-        jbtnKaffeeSchwarzWeissZucker.setIcon(kaffeeSchwarzWeissZucker);
-        jbtnMilch.setIcon(milch);
-        jbtnrechts.setIcon(rechts);
-        jbtnKakao.setIcon(kakao);
-        jbtnfree1.setIcon(free1);
-        jbtnfree2.setIcon(free2);
-        jbtnfree3.setIcon(free3);
-        jbtnWartung.setIcon(wartung);
-        jbtninfo.setIcon(info);
-        jbtnlinks.setIcon(linksImage);
-        jbtnMenu.setIcon(menuImage);
-        jbtnObenrechts.setIcon(obenrechtsImage);
-        jbtnBlankoRechts.setIcon(blankoRechts);
-
-
-
-
-        setSizeFromOriginal(jbtnKaffeeSchwarz, kaffeeSchwarz);
-        setSizeFromOriginal(jbtnKaffeeSchwarzWeiss, kaffeeSchwarzWeiss);
-        setSizeFromOriginal(jbtnKaffeeSchwarzWeissZucker, kaffeeSchwarzWeissZucker);
-        setSizeFromOriginal(jbtnMilch, milch);
-        setSizeFromOriginal(jbtnrechts, rechts);
-        setSizeFromOriginal(jbtnKakao, kakao);
-        setSizeFromOriginal(jbtnfree1, free1);
-        setSizeFromOriginal(jbtnfree2, free2);
-        setSizeFromOriginal(jbtnfree3, free3);
-        setSizeFromOriginal(jbtnWartung, wartung);
-        setSizeFromOriginal(jbtninfo, info);
-        setSizeFromOriginal(jbtnlinks, linksImage);
-        setSizeFromOriginal(jbtnMenu, menuImage);
-        setSizeFromOriginal(jbtnObenrechts, obenrechtsImage);
-        setSizeFromOriginal(jbtnBlankoRechts, blankoRechts);
-
+        imageIcons[0] = new ImageIcon(bildPfad + "Button_KaffeeSchwarz.jpg");
+        imageIcons[1] = new ImageIcon(bildPfad + "Button_KaffeeSchwarzWeiss.jpg");
+        imageIcons[2] = new ImageIcon(bildPfad + "Button_KaffeeSchwarzWeissZucker.jpg");
+        imageIcons[3] = new ImageIcon(bildPfad + "Button_Milch.jpg");
+        imageIcons[4] = new ImageIcon(bildPfad + "Button_Kakao.jpg");
+        imageIcons[5] = new ImageIcon(bildPfad + "Button_Wartung.jpg");
+        imageIcons[6] = new ImageIcon(bildPfad + "Button_Info.jpg");
+        imageIcons[7] = new ImageIcon(bildPfad + "Button_Free1.jpg");
+        imageIcons[8] = new ImageIcon(bildPfad + "Button_Free2.jpg");
+        imageIcons[9] = new ImageIcon(bildPfad + "Button_Free3.jpg");
+        imageIcons[10] = new ImageIcon(bildPfad + "blanko_Rechts.jpg");
+        imageIcons[11] = new ImageIcon(bildPfad + "blanko_ObenRechts.jpg");
+        imageIcons[12] = new ImageIcon(bildPfad + "blanko_Links.jpg");
+        imageIcons[13] = new ImageIcon(bildPfad + "button_Menu.jpg");
+        imageIcons[14] = new ImageIcon(bildPfad + "Button_Free");
 
     }
 
-    private static JButton setSizeFromOriginal(JButton jbtn ,ImageIcon imageIcon) {
-        Dimension d = new Dimension(imageIcon.getIconWidth(), imageIcon.getIconHeight());
-        jbtn.setMaximumSize(d);
-        jbtn.setBorder(new CompoundBorder(null, null));
-        return jbtn;
-    }
+    private static Dimension setSizeFromOriginal(JButton button ) {
 
+        return new Dimension(button.getIcon().getIconWidth()/2, button.getIcon().getIconHeight()/2);
+    }
 
     private static void legeButtonsAn() {
-        jbtnKaffeeSchwarz = new JButton();
-        jbtnKaffeeSchwarzWeiss = new JButton();
-        jbtnKaffeeSchwarzWeissZucker = new JButton();
-        jbtnMilch = new JButton();
-        jbtnrechts = new JButton();
-        jbtnKakao = new JButton();
-        jbtnfree1 = new JButton();
-        jbtnfree2 = new JButton();
-        jbtnfree3 = new JButton();
-        jbtnWartung = new JButton();
-        jbtninfo = new JButton();
-        jbtnlinks = new JButton();
-        jbtnMenu = new JButton();
-        jbtnObenrechts = new JButton();
-        jbtnBlankoRechts = new JButton();
+        createAndSetIcons(bildPfad);
+        for (int i = 0; i < buttonliste.length; i++) {
+            buttonliste[i] = new JButton();
+            buttonliste[i].setBorder(new CompoundBorder(null, null));
+            buttonliste[i].setActionCommand(buttonTexte[i]);
+            buttonliste[i].setIcon(imageIcons[i]);
+            buttonliste[i].setSize(setSizeFromOriginal(buttonliste[i]));
+            buttonliste[i].addActionListener(Menu::actionPerformed);
 
+        }
     }
 
+    private static void actionPerformed(ActionEvent e) {
+        GuiKaffeeMaschine.button.setEnabled(true);
+        GuiKaffeeMaschine.button.setVisible(true);
+        GuiKaffeeMaschine.popupPanel.setEnabled(false);
+        GuiKaffeeMaschine.popupPanel.setVisible(false);
 
+        switch (e.getActionCommand()) {
+            case "jbtnKaffeeSchwarz":
+                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarz.jpg"));
+                System.out.println(e.getActionCommand());
+                break;
+            case "jbtnKaffeeSchwarzWeiss":
+                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarzWeiss.jpg"));
+                System.out.println(e.getActionCommand());
+                break;
+            case "jbtnKaffeeSchwarzWeissZucker":
+                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarzWeissZucker.jpg"));
+                System.out.println(e.getActionCommand());
+                break;
+            case "jbtnMilch":
+                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Milch.jpg"));
+                System.out.println(e.getActionCommand());
+                break;
+            case "jbtnKakao":
+                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Kakao0.jpg"));
+                System.out.println(e.getActionCommand());
+                break;
+            //case "jbtnWartung":
+            //    GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Betriebspause_00.jpg"));
+            //    System.out.println(e.getActionCommand());
+            //    break;
+            //case "jbtninfo":
+            //    GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Betriebspause_00.jpg"));
+            //    System.out.println(e.getActionCommand());
+            //    break;
+            case "blanko_ObenRechts":
+                GuiKaffeeMaschine.bereit = false;
+            default:
+                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Menu_00.jpg"));
+                System.out.println(e.getActionCommand());
+                break;
+        }
+    }
 }
