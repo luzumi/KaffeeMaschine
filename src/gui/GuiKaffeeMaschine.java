@@ -9,89 +9,78 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class GuiKaffeeMaschine extends JFrame {
+public class GuiKaffeeMaschine  extends JFrame{
+
     static ImageIcon ausgangsBild = new ImageIcon("E:\\intelliJ-Workspace\\KaffeeMaschine\\src\\Gui\\Bilder\\WMF_Professional_Coffeemachines_Menu_00.jpg");
+
     static int sizeWidht = ausgangsBild.getIconWidth();
     static int sizeHight = ausgangsBild.getIconHeight();
     static JPanel mainPanel;
-    static JPanel popupPanel;
-    static JButton button;
+    static JPanel menuPanel;
+    static JButton backgroundButton;
     static boolean bereit = true;
 
 
     public GuiKaffeeMaschine(String[] args) throws Exception {
 
-
         JPanel panel = createPanel();
         JFrame frame = createFrame();
+
         frame.setResizable(false);
         frame.add(panel);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-
     }
 
+
     private static JPanel createPanel() throws Exception {
-        Container container = new Container();
 
         mainPanel = new JPanel();
-        mainPanel.setPreferredSize(new Dimension(sizeWidht * 21, sizeHight * 21));
         mainPanel.setLayout(new OverlayLayout(mainPanel));
 
-
-        popupPanel = createPopupPanel();
-        popupPanel.setLayout(new GridLayout(4, 4));
-        popupPanel.setSize(sizeWidht, sizeHight);
-        popupPanel = createMenu();
-        popupPanel.setLayout(new GridBagLayout());
-        popupPanel.setEnabled(false);
-        popupPanel.setVisible(false);
-
-        button = new JButton("");
-        button.setAlignmentX(0.00f);
-        button.setAlignmentY(0.0f);
+        menuPanel = createMenuPanel(KMGui.invoke());
 
 
-        mainPanel.add(button);
-        mainPanel.add(popupPanel);
+        backgroundButton = createBackgroundPanel(backgroundButton);
+        backgroundButton.setIcon(new ImageIcon(Menu.bildPfad + "WMF_Professional_Coffeemachines_Menu_00.jpg"));
 
-        popupPanel.setBounds(220,0, popupPanel.getWidth(), popupPanel.getHeight());
-        popupPanel.setAlignmentX(0f);
-        popupPanel.setAlignmentY(0f);
+        Container container = createFrame().getContentPane();
 
-        button.setIcon(ausgangsBild);
+        container.add(menuPanel);
+        container.add(backgroundButton);
 
-        JPanel finalPopupPanel = popupPanel;
-        button.addActionListener(e -> {
-            button.setEnabled(false);
-            button.setVisible(false);
-            finalPopupPanel.setEnabled(true);
-            finalPopupPanel.setVisible(true);
+
+        mainPanel.add(backgroundButton);
+        mainPanel.add(container);
+
+        menuPanel.setBounds(0,-150, menuPanel.getWidth(), menuPanel.getHeight());
+        menuPanel.setAlignmentX(1f);
+        menuPanel.setAlignmentY(0f);
+
+        backgroundButton.setIcon(ausgangsBild);
+
+        backgroundButton.addActionListener(e -> {
+            backgroundButton.setIcon(new ImageIcon(Menu.bildPfad + "WMF_Professional_Coffeemachines_Menu_00.jpg"));
+            backgroundButton.setEnabled(true);
+            backgroundButton.setVisible(false);
+
+            container.setEnabled(true);
+            container.setVisible(true);
         });
 
 
         return mainPanel;
     }
 
-
-    private static JPanel createPopupPanel(/*JComponent overlapComponent*/) throws Exception {
-        ImageIcon menuIcon = new ImageIcon("E:\\intelliJ-Workspace\\KaffeeMaschine\\src\\Gui\\Bilder\\WMF_Professional_Coffeemachines_Menu_00.jpg");
-        JPanel popupPanel = Menu.invoke();
-        JButton popupCloseButton = new JButton("");
-        popupPanel.setOpaque(true);
-        popupPanel.setSize(ausgangsBild.getIconWidth(), ausgangsBild.getIconHeight());
-        popupPanel.setLayout(new OverlayLayout(wrapInPanel(popupCloseButton)));
-
-        popupPanel.setVisible(false);
-
-        popupCloseButton.addActionListener(e -> {
-            popupCloseButton.setEnabled(true);
-            popupPanel.setVisible(false);
-        });
-
-        return popupPanel;
+    private static JButton createBackgroundPanel(JButton jButton) {
+        jButton = new JButton("");
+        jButton.setAlignmentX(0.00f);
+        jButton.setAlignmentY(0.0f);
+        jButton.setVisible(true);
+        return jButton;
     }
+
 
     private static JPanel wrapInPanel(JComponent component) {
         JPanel jPanel = new JPanel();
@@ -104,19 +93,22 @@ public class GuiKaffeeMaschine extends JFrame {
 
     private static JFrame createFrame() {
         JFrame frame = new JFrame("OverlayLayout Example");
+        frame.setBackground(Color.BLACK);
+        frame.setLocationByPlatform( true );
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(new Dimension(ausgangsBild.getIconWidth(), ausgangsBild.getIconHeight()));
+        frame.setSize(new Dimension(sizeWidht, sizeHight));
 
         return frame;
     }
 
-    private static JPanel createMenu() throws Exception {
+    private static JPanel createMenuPanel(JPanel panel) throws Exception {
         JPanel jPanel = new JPanel();
         jPanel.setMaximumSize(new Dimension((ausgangsBild.getIconWidth() / 2), ausgangsBild.getIconHeight() / 2));
-        jPanel.add(Menu.invoke());
-
-        jPanel.setVisible(false);
-
+        jPanel.add(panel);
+        jPanel.setLayout(new GridLayout(4, 4));
+        jPanel.setSize(sizeWidht, sizeHight);
+        jPanel.setLayout(new GridBagLayout());
+        jPanel.setVisible(true);
 
         return jPanel;
 

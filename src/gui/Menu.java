@@ -17,21 +17,21 @@ public class Menu {
     static JButton[] buttonliste = new JButton[15];
     static ImageIcon[] imageIcons = new ImageIcon[15];
     static String[] buttonTexte = new String[]{
-        /* 0 */    "jbtnKaffeeSchwarz",
-        /* 1 */    "jbtnKaffeeSchwarzWeiss",
-        /* 2 */    "jbtnKaffeeSchwarzWeissZucker",
-        /* 3 */    "jbtnMilch",
-        /* 4 */    "jbtnKakao",
-        /* 5 */    "jbtnWartung",
-        /* 6 */    "jbtninfo",
-        /* 7 */    "jbtnfree1",
-        /* 8 */    "jbtnfree2",
-        /* 9 */    "jbtnfree3",
-        /* 10 */    "jbtnBlankoRechts",
-        /* 11 */    "jbtnrechts",
-        /* 12 */    "jbtnlinks",
-        /* 13 */    "jbtnMenu",
-        /* 14 */    "jbtnObenrechts" };
+            /* 0 */    "jbtnKaffeeSchwarz",
+            /* 1 */    "jbtnKaffeeSchwarzWeiss",
+            /* 2 */    "jbtnKaffeeSchwarzWeissZucker",
+            /* 3 */    "jbtnMilch",
+            /* 4 */    "jbtnKakao",
+            /* 5 */    "jbtnWartung",
+            /* 6 */    "jbtninfo",
+            /* 7 */    "jbtnfree1",
+            /* 8 */    "jbtnfree2",
+            /* 9 */    "jbtnfree3",
+            /* 10 */    "jbtnBlankoRechts",
+            /* 11 */    "jbtnrechts",
+            /* 12 */    "jbtnlinks",
+            /* 13 */    "jbtnMenu",
+            /* 14 */    "jbtnObenrechts"};
 
 
     public static JPanel invoke() throws Exception {
@@ -39,17 +39,17 @@ public class Menu {
         legeButtonsAn();
 
 
-        JPanel menuOben = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
+        JPanel menuOben = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         menuOben.add(buttonliste[13]);
         menuOben.add(buttonliste[11]);
 
-        JPanel menuMitteOben = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
+        JPanel menuMitteOben = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         menuMitteOben.add(buttonliste[0]);
         menuMitteOben.add(buttonliste[1]);
         menuMitteOben.add(buttonliste[2]);
         menuMitteOben.add(buttonliste[3]);
 
-        JPanel menuMitteUnten = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
+        JPanel menuMitteUnten = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         menuMitteUnten.add(buttonliste[7]);
         menuMitteUnten.add(buttonliste[8]);
         menuMitteUnten.add(buttonliste[9]);
@@ -66,7 +66,7 @@ public class Menu {
         menuMitteGesamt.add(menuMitteOhneRechts, BorderLayout.WEST);
         menuMitteGesamt.add(menuMitteRechts, BorderLayout.EAST);
 
-        JPanel menuUnten = new JPanel(new FlowLayout(FlowLayout.LEFT, 0,0));
+        JPanel menuUnten = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         menuUnten.add(buttonliste[5]);
         menuUnten.add(buttonliste[6]);
 
@@ -76,12 +76,13 @@ public class Menu {
         menuBox.add(menuUnten, BorderLayout.SOUTH);
 
         JPanel finalMenu = new JPanel(new BorderLayout());
-        finalMenu.add(buttonliste[12],  BorderLayout.EAST);
+        finalMenu.add(buttonliste[12], BorderLayout.EAST);
         finalMenu.add(menuBox, BorderLayout.CENTER);
         finalMenu.setLayout(new GridBagLayout());
-        finalMenu.setBounds(1110,110,110,330);
+        finalMenu.setBounds(1110, 110, 110, 330);
 
         //TODO Größe Menu anpassen und positionieren
+
         return finalMenu;
 
     }
@@ -106,9 +107,9 @@ public class Menu {
 
     }
 
-    private static Dimension setSizeFromOriginal(JButton button ) {
+    private static Dimension setSizeFromOriginal(JButton button) {
 
-        return new Dimension(button.getIcon().getIconWidth()/2, button.getIcon().getIconHeight()/2);
+        return new Dimension(button.getIcon().getIconWidth() / 2, button.getIcon().getIconHeight() / 2);
     }
 
     private static void legeButtonsAn() {
@@ -121,34 +122,36 @@ public class Menu {
             buttonliste[i].setSize(setSizeFromOriginal(buttonliste[i]));
             buttonliste[i].addActionListener(Menu::actionPerformed);
 
+
         }
     }
 
-    private static void actionPerformed(ActionEvent e) {
-        GuiKaffeeMaschine.button.setEnabled(true);
-        GuiKaffeeMaschine.button.setVisible(true);
-        GuiKaffeeMaschine.popupPanel.setEnabled(false);
-        GuiKaffeeMaschine.popupPanel.setVisible(false);
+    static void actionPerformed(ActionEvent e) {
+        GuiKaffeeMaschine.backgroundButton.setEnabled(true);
+        GuiKaffeeMaschine.backgroundButton.setVisible(true);
+
+        GuiKaffeeMaschine.menuPanel.setEnabled(true);
+        GuiKaffeeMaschine.menuPanel.setVisible(true);
 
         switch (e.getActionCommand()) {
             case "jbtnKaffeeSchwarz":
-                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarz.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarz.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
             case "jbtnKaffeeSchwarzWeiss":
-                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarzWeiss.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarzWeiss.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
             case "jbtnKaffeeSchwarzWeissZucker":
-                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarzWeissZucker.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarzWeissZucker.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
             case "jbtnMilch":
-                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Milch.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Milch.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
             case "jbtnKakao":
-                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Kakao0.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Kakao0.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
             //case "jbtnWartung":
@@ -162,7 +165,7 @@ public class Menu {
             case "blanko_ObenRechts":
                 GuiKaffeeMaschine.bereit = false;
             default:
-                GuiKaffeeMaschine.button.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Menu_00.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Menu_00.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
         }
