@@ -37,10 +37,10 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   namespace kaffeemaschine {
     class kaffeemaschine.Constants {
         {static} + ABFALLBEHAELTER : int
-        {static} + LAENGE_DREI : int
+        {static} + DREI : int
         {static} + PROGRAMM_ABBRUCH : int
         {static} + WARTUNG : int
-        {static} + ZEHN_ODER_GROESSER : int
+        {static} + ZEHN : int
         {static} + ZEILE_1 : String
         {static} + ZEILE_10 : String
         {static} + ZEILE_2 : String
@@ -51,6 +51,13 @@ title __KAFFEEMASCHINE's Class Diagram__\n
         {static} + ZEILE_7 : String
         {static} + ZEILE_8 : String
         {static} + ZEILE_9 : String
+    }
+  }
+  
+
+  namespace kaffeemaschine {
+    class kaffeemaschine.GuiStart {
+        {static} + main()
     }
   }
   
@@ -91,6 +98,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
         + Menu()
         {static} + menu()
         {static} + programmAuswahl()
+        {static} + programmAuswahl()
     }
   }
   
@@ -121,9 +129,9 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   namespace kaffeemaschine {
     class kaffeemaschine.ZutatenBehaelter {
         + ZutatenBehaelter()
+        + fuellstandRunden()
         + toString()
         + wartung()
-        - fuellstandRunden()
     }
   }
   
