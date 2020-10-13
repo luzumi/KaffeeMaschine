@@ -6,6 +6,8 @@
 
 package kaffeemaschine;
 
+import java.util.Arrays;
+
 /**
  * @author corat
  * KaffeeMaschine hat verschiedene Behälter
@@ -14,7 +16,7 @@ package kaffeemaschine;
  */
 public class Kaffeemaschine {
 
-    AbstractBehaelter[] behaelterListe = new AbstractBehaelter[6];
+    static AbstractBehaelter[] behaelterListe = new AbstractBehaelter[6];
     static boolean betriebsbereit = true;
 
 
@@ -39,7 +41,7 @@ public class Kaffeemaschine {
      *                       Entnimmt die Zutaten für das Produkt aus den jeweiligen Behältern
      *                       erzeugter Müll kommt in den Abfallbehältern
      */
-    public void zutatenEntnahme(int eingabeAuswahl) {
+    public static void zutatenEntnahme(int eingabeAuswahl) throws AbfallBehaelterVollException, ZutatLeerException{
 
         if (eingabeAuswahl > 0 && eingabeAuswahl <= Rezept.AuswahlProdukt.length) {
             if(behaelterListe[Constants.ABFALLBEHAELTER].getFuellstand() == behaelterListe[Constants.ABFALLBEHAELTER].getMaxFuellMenge()){
@@ -66,20 +68,20 @@ public class Kaffeemaschine {
     }
 
 
-    public void programmAbbruch(String ausgabeText) {
+    public static void programmAbbruch(String ausgabeText) {
         System.out.println(ausgabeText);
 
         System.exit(Constants.PROGRAMM_ABBRUCH);
     }
 
 
-    public void wartungInitiieren() {
+    public static void wartungInitiieren() {
 
         for (int zaehler = 0; zaehler < behaelterListe.length; zaehler++) {
 
             if (behaelterListe[zaehler].getFuellstand() <= behaelterListe[zaehler].getMaxFuellMenge()) {
 
-                System.out.println(this.behaelterListe[zaehler].wartung(behaelterListe[zaehler]));
+                System.out.println(behaelterListe[zaehler].wartung(behaelterListe[zaehler]));
             }
         }
 
@@ -90,7 +92,7 @@ public class Kaffeemaschine {
     }
 
 
-    public void getraenkZuebereiten(int eingabeAuswahl) {
+    public static void getraenkZuebereiten(int eingabeAuswahl) {
 
         for (int zaehler = 0; zaehler < behaelterListe.length - 1; zaehler++) {
 
@@ -112,7 +114,7 @@ public class Kaffeemaschine {
     }
 
 
-    private void wartenAufWartung(int zaehler) {
+    private static void wartenAufWartung(int zaehler) {
 
         while (!betriebsbereit) {
 
@@ -137,7 +139,7 @@ public class Kaffeemaschine {
     }
 
 
-    private void getraenkAusgeben(int eingabeUser) {
+    private static void getraenkAusgeben(int eingabeUser) {
 
         System.out.println("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("Bitte entnehmen Sie Ihr Getränk!\n" + Rezept.AuswahlProdukt[eingabeUser - 1]);
@@ -145,8 +147,20 @@ public class Kaffeemaschine {
     }
 
 
-    private boolean pruefeZutatenFuellstand(int eingabeUser, int zaehler) {
+    private static boolean pruefeZutatenFuellstand(int eingabeUser, int zaehler) {
 
         return ((behaelterListe[zaehler].getFuellstand() - Rezept.getZutatenVerbrauch[eingabeUser][zaehler]) > 0);
+    }
+
+    public static String[] infoAuslesen() {
+        String[] ausgabe = new String[behaelterListe.length];
+        for (int zaehler = 0; zaehler < behaelterListe.length; zaehler++) {
+
+                ausgabe[zaehler] = behaelterListe[zaehler].toString(behaelterListe[zaehler]) + "\n";
+            System.out.println(behaelterListe[zaehler].toString(behaelterListe[zaehler]) + "\n");
+
+            }
+        System.out.println(Arrays.toString(ausgabe));
+        return ausgabe;
     }
 }

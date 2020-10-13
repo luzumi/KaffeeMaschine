@@ -6,6 +6,8 @@
 
 package kaffeemaschine;
 
+import gui.KMGui;
+
 /**
  * Erweitern Sie die Kaffeemaschine um eine Fehlerbehandlung mittels Exceptions.
  * • ZutatLeerException: wird geworfen, falls ein ZutatenBehaelter leer ist.
@@ -18,6 +20,7 @@ public class ZutatLeerException extends Exception {
 
     public ZutatLeerException(AbstractBehaelter[] behaelterListe, int zaehler) {
         super(behaelterListe[zaehler].getBezeichner() + "Behälter ist LEER_____\n*Auswahl z.Z. nicht möglich*\nDrücken Sie zur Wartung '9'!\n\n******************");
+        KMGui.menuNeuZeichnen(KMGui.getButtonLeerTexte());
     }
 
     @Override

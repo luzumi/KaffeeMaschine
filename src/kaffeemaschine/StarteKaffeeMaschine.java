@@ -14,7 +14,7 @@ package kaffeemaschine;
  */
 public class StarteKaffeeMaschine {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ZutatLeerException, AbfallBehaelterVollException {
 
         Kaffeemaschine kaffeemaschine = new Kaffeemaschine();
 
@@ -22,7 +22,7 @@ public class StarteKaffeeMaschine {
         while (Kaffeemaschine.betriebsbereit) {
 
             System.out.println(Menu.menu());
-            kaffeemaschine.zutatenEntnahme(Menu.programmAuswahl("Programm auswählen", ""));
+            Kaffeemaschine.zutatenEntnahme(Menu.programmAuswahl("Programm auswählen", ""));
         }
     }
 }

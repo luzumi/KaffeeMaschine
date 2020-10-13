@@ -6,6 +6,8 @@
 
 package kaffeemaschine;
 
+import gui.KMGui;
+
 /**
  * Erweitern Sie die Kaffeemaschine um eine Fehlerbehandlung mittels Exceptions.
  *         • BehaelterVollException: wird geworfen, falls der AbfallBehaelter voll ist.
@@ -21,6 +23,7 @@ public class AbfallBehaelterVollException extends Exception {
                 "Die KaffeeMaschine----------\n" +
                 "muss gewartet werden.------\n" +
                 "Drücken Sie die '9'--------\n");
+        KMGui.menuNeuZeichnen(KMGui.getButtonLeerTexte());
     }
 
 

@@ -6,8 +6,6 @@
 
 package kaffeemaschine;
 
-import java.util.Scanner;
-
 /**
  * @author corat
  */

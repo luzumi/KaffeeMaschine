@@ -6,23 +6,35 @@
 
 package gui;
 
+import kaffeemaschine.AbfallBehaelterVollException;
+import kaffeemaschine.Kaffeemaschine;
+import kaffeemaschine.ZutatLeerException;
+
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class KMGui {
-    static JPanel menuPanel;
-    static JButton[] buttonliste = new JButton[16];
-    static JLabel[] jLabels = new JLabel[4];
-    static ImageIcon[] imageIcons = new ImageIcon[16];
+    private static JPanel menuPanel;
 
-    static String bildPfad = "E:\\intelliJ-Workspace\\KaffeeMaschine\\src\\gui\\Bilder\\Neu\\";
-    static String[] buttonTexte = new String[]{"M_O1", "M_O2", "M_O3", "M_O4", "M_KS", "M_KSW", "M_KSWZ", "M_M", "free_1",
+    private static JButton menuAusgaben = new JButton();
+    private static JButton[] buttonliste = new JButton[16];
+    private static JLabel[] jLabels = new JLabel[4];
+
+    private static ImageIcon textLabel = new ImageIcon(".\\src\\gui\\Bilder\\Neu\\menuBlanco.jpg");
+    private static ImageIcon[] imageIcons = new ImageIcon[16];
+
+    private static String bildPfad = ".\\src\\gui\\Bilder\\Neu\\";
+    private static String[] buttonTexte = new String[]{"M_O1", "M_O2", "M_O3", "M_O4", "M_KS", "M_KSW", "M_KSWZ", "M_M", "free_1",
             "free_2", "free_3", "M_Kak", "M_U1", "M_U2", "M_U3", "M_U4"};
-    static String[] buttonLeerTexte = new String[]{"M_O1_L", "M_O2_L", "M_O3_L", "M_O4_L", "M_KS_L", "M_KSW_L", "M_KSWZ_L",
-            "M_M_L", "free_1_L", "free_2_L", "free_3_L", "M_Kak_L", "M_U1_L", "M_U2_L", "M_U3_L", "M_U4_L"};
-    static String[] labelTexte = new String[]{"KM_Leer_Links", "KM_Leer_Oben", "KM_Leer_Rechts", "KM_UntenLeer"};
+    private static String[] buttonLeerTexte = new String[]{"M_O1_L", "M_O2_L", "M_O3_L", "M_O4_L", "M_KS_L", "M_KSW_L", "M_KSWZ_L",
+            "M_M_L", "free_1_L", "free_2_L", "free_3_L", "M_Kak_L",
+            "M_U1_L", "M_U2_L", "M_U3_L", "M_U4_L"};
+    private static String[] labelTexte = new String[]{"KM_Leer_Links", "KM_Leer_Oben", "KM_Leer_Rechts", "KM_UntenLeer"};
+
+
+    private static Graphics g;
 
 
     public static JPanel invoke() {
@@ -143,13 +155,12 @@ public class KMGui {
     }
 
 
-    private static void actionPerformed(ActionEvent e) throws Exception {
+    private static void actionPerformed(ActionEvent e) throws AbfallBehaelterVollException, ZutatLeerException {
 
         switch (e.getActionCommand()) {
             case "M_O1":
-                menuNeuZeichnen(buttonLeerTexte);
+                MenuSchreiber.schreibeInfoMenuItem(buttonLeerTexte, buttonliste);
                 jLabels[3].setIcon(new ImageIcon(bildPfad + "KM_UntenLeer.jpg"));
-                System.out.println(e.getActionCommand() + " M_O0 _L");
                 break;
             case "M_O2":
                 menuNeuZeichnen(buttonLeerTexte);
@@ -169,22 +180,22 @@ public class KMGui {
             case "M_KS":
                 jLabels[3].setIcon(new ImageIcon(bildPfad + "KM_Unten_K.jpg"));
                 menuNeuZeichnen(buttonTexte);
-                System.out.println(e.getActionCommand());
+                Kaffeemaschine.zutatenEntnahme(1);
                 break;
             case "M_KSW":
                 menuNeuZeichnen(buttonTexte);
                 jLabels[3].setIcon(new ImageIcon(bildPfad + "KM_Unten_KS.jpg"));
-                System.out.println(e.getActionCommand());
+                Kaffeemaschine.zutatenEntnahme(2);
                 break;
             case "M_KSWZ":
                 menuNeuZeichnen(buttonTexte);
                 jLabels[3].setIcon(new ImageIcon(bildPfad + "KM_Unten_KSZ.jpg"));
-                System.out.println(e.getActionCommand());
+                Kaffeemaschine.zutatenEntnahme(3);
                 break;
             case "M_M":
                 menuNeuZeichnen(buttonTexte);
                 jLabels[3].setIcon(new ImageIcon(bildPfad + "KM_Unten_Milch.jpg"));
-                System.out.println(e.getActionCommand());
+                Kaffeemaschine.zutatenEntnahme(4);
                 break;
             case "free_1":
                 menuNeuZeichnen(buttonLeerTexte);
@@ -204,22 +215,31 @@ public class KMGui {
             case "M_Kak":
                 menuNeuZeichnen(buttonTexte);
                 jLabels[3].setIcon(new ImageIcon(bildPfad + "KM_UntenLeer.jpg"));
-                jLabels[3].setIcon(new ImageIcon(bildPfad + "KM_Unten_Kak.jpg"));
-                System.out.println(e.getActionCommand());
+                Kaffeemaschine.zutatenEntnahme(5);
                 break;
             case "M_U1":
-
+                menuNeuZeichnen(buttonLeerTexte);
+                jLabels[3].setIcon(new ImageIcon(bildPfad + "KM_UntenLeer.jpg"));
+                Kaffeemaschine.zutatenEntnahme(9);
+                System.out.println(e.getActionCommand() + " U 1, 2 _L");
+                break;
             case "M_U2":
                 menuNeuZeichnen(buttonLeerTexte);
                 jLabels[3].setIcon(new ImageIcon(bildPfad + "KM_UntenLeer.jpg"));
-                System.out.println(e.getActionCommand() + " U 1, 2 _L");
+                Kaffeemaschine.zutatenEntnahme(9);
+                System.out.println(e.getActionCommand() + " U 2, 2 _L");
                 break;
             case "M_U3":
+                menuNeuZeichnen(buttonLeerTexte);
+                jLabels[3].setIcon(new ImageIcon(bildPfad + "KM_UntenLeer.jpg"));
+                Kaffeemaschine.zutatenEntnahme(9);
+                System.out.println(e.getActionCommand() + " U 3, 2 _L");
+                break;
 
             case "M_U4":
                 menuNeuZeichnen(buttonLeerTexte);
                 jLabels[3].setIcon(new ImageIcon(bildPfad + "KM_UntenLeer.jpg"));
-                System.out.println(e.getActionCommand() + bildPfad + buttonTexte[15] + "_L" + ".jpg");
+                Kaffeemaschine.zutatenEntnahme(10);
                 break;
             default:
                 menuNeuZeichnen(buttonTexte);
@@ -228,11 +248,54 @@ public class KMGui {
         }
     }
 
-    private static void menuNeuZeichnen(String[] texte) {
+    public static void menuNeuZeichnen(String[] texte) {
         for (int i = 0; i < buttonliste.length; i++) {
             buttonliste[i].setIcon(new ImageIcon(bildPfad + texte[i] + ".jpg"));
             buttonliste[i].setActionCommand(texte[i]);
+            buttonliste[i].setVisible(true);
+
         }
+    }
+
+
+    public static String[] getButtonTexte() {
+        return buttonTexte;
+    }
+
+    public static String[] getButtonLeerTexte() {
+        return buttonLeerTexte;
+    }
+
+    public static ImageIcon getTextLabel() {
+        return textLabel;
+    }
+
+    public static void setTextLabel(ImageIcon textLabel) {
+        KMGui.textLabel = textLabel;
+    }
+
+    public static JButton getMenuAusgaben() {
+        return menuAusgaben;
+    }
+
+    public static void setMenuAusgaben(JButton menuAusgaben) {
+        KMGui.menuAusgaben = menuAusgaben;
+    }
+
+    public static JButton[] getButtonliste() {
+        return buttonliste;
+    }
+
+    public static void setButtonliste(JButton[] buttonliste) {
+        KMGui.buttonliste = buttonliste;
+    }
+
+    public static ImageIcon[] getImageIcons() {
+        return imageIcons;
+    }
+
+    public static void setImageIcons(ImageIcon[] imageIcons) {
+        KMGui.imageIcons = imageIcons;
     }
 }
 
