@@ -17,6 +17,7 @@ public class Constants {
     public static final int WARTUNG = 9;
     public static final int PROGRAMM_ABBRUCH = 0;
     public static final int DREI = 3;
+    public static final String bildPfad = ".\\src\\gui\\Bilder\\Neu\\";
 
     public final static String ZEILE_1 = "****** Kaffeemaschine ******";
     public final static String ZEILE_2 = "============================";

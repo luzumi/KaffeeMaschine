@@ -6,6 +6,8 @@
 
 package gui;
 
+import kaffeemaschine.Constants;
+
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import java.awt.*;
@@ -13,7 +15,7 @@ import java.awt.event.ActionEvent;
 
 public class Menu {
 
-    static String bildPfad = ".\\gui\\Bilder\\";
+
     static JButton[] buttonliste = new JButton[15];
     static ImageIcon[] imageIcons = new ImageIcon[15];
     static String[] buttonTexte = new String[]{
@@ -113,7 +115,7 @@ public class Menu {
     }
 
     private static void legeButtonsAn() {
-        createAndSetIcons(bildPfad);
+        createAndSetIcons(Constants.bildPfad);
         for (int i = 0; i < buttonliste.length; i++) {
             buttonliste[i] = new JButton();
             buttonliste[i].setBorder(new CompoundBorder(null, null));
@@ -135,23 +137,23 @@ public class Menu {
 
         switch (e.getActionCommand()) {
             case "jbtnKaffeeSchwarz":
-                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarz.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(Constants.bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarz.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
             case "jbtnKaffeeSchwarzWeiss":
-                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarzWeiss.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(Constants.bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarzWeiss.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
             case "jbtnKaffeeSchwarzWeissZucker":
-                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarzWeissZucker.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(Constants.bildPfad + "WMF_Professional_Coffeemachines_KaffeeSchwarzWeissZucker.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
             case "jbtnMilch":
-                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Milch.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(Constants.bildPfad + "WMF_Professional_Coffeemachines_Milch.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
             case "jbtnKakao":
-                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Kakao0.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(Constants.bildPfad + "WMF_Professional_Coffeemachines_Kakao0.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
             //case "jbtnWartung":
@@ -165,7 +167,7 @@ public class Menu {
             case "blanko_ObenRechts":
                 GuiKaffeeMaschine.bereit = false;
             default:
-                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(bildPfad + "WMF_Professional_Coffeemachines_Menu_00.jpg"));
+                GuiKaffeeMaschine.backgroundButton.setIcon(new ImageIcon(Constants.bildPfad + "WMF_Professional_Coffeemachines_Menu_00.jpg"));
                 System.out.println(e.getActionCommand());
                 break;
         }

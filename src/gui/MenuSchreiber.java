@@ -6,6 +6,7 @@
 
 package gui;
 
+import kaffeemaschine.Constants;
 import kaffeemaschine.Kaffeemaschine;
 
 import javax.imageio.ImageIO;
@@ -19,18 +20,18 @@ import java.io.IOException;
 
 public class MenuSchreiber {
 
-    private static String[] systemMeldung;
-    static Thread t;
-    private static boolean running;
-    public static void schreibeInfoMenuItem(String[] buttonLeerTexte, JButton[] buttonliste) {
-        //index++;
-        setSystemMeldung(Kaffeemaschine.infoAuslesen());
+    private String[] systemMeldung;
+    static int index = 0;
 
+    public MenuSchreiber() {
+
+    }
+
+    public void schreibeWartungsinfo(JButton[] buttonliste) {
+        setSystemMeldung(Kaffeemaschine.wartungAnfordern());
         createDisplayMessage(getSystemMeldung());
 
-        //KMGui.menuNeuZeichnen(buttonLeerTexte);
-
-        KMGui.setTextLabel(new ImageIcon("E:\\intelliJ-Workspace\\KaffeeMaschine\\src\\gui\\Bilder\\Neu\\menuBlanco2.jpg"));
+        KMGui.setTextLabel(new ImageIcon(".\\src\\gui\\Bilder\\Neu\\infoLog\\menu" + index + ".jpg"));
 
         buttonliste[0].setIcon(KMGui.getTextLabel());
 
@@ -43,11 +44,52 @@ public class MenuSchreiber {
     }
 
 
-    public static void createDisplayMessage(String[] text) {
+    public void createAbfallExceptionMessage(JButton[] buttonliste){
 
-        try  (DataOutputStream ioFileOutput = new DataOutputStream(new FileOutputStream(new File("E:\\intelliJ-Workspace\\KaffeeMaschine\\src\\gui\\Bilder\\Neu\\menuBlanco2.jpg")))){
+        String[] text = Kaffeemaschine.wartungAnfordern();
 
-            BufferedImage menuImage = ImageIO.read(new File("E:\\intelliJ-Workspace\\KaffeeMaschine\\src\\gui\\Bilder\\Neu\\menuBlanco.jpg"));
+        createDisplayMessage(text);
+
+        KMGui.setTextLabel(new ImageIcon(".\\src\\gui\\Bilder\\Neu\\infoLog\\menu" + index + ".jpg"));
+
+        buttonliste[0].setIcon(KMGui.getTextLabel());
+
+        buttonliste[0].setActionCommand("");
+
+        for (int i = 1; i < buttonliste.length; i++) {
+
+            buttonliste[i].setVisible(false);
+        }
+    }
+
+
+    public void schreibeInfoMenuItem(JButton[] buttonliste) {
+
+        setSystemMeldung(Kaffeemaschine.infoAuslesen());
+
+        createDisplayMessage(getSystemMeldung());
+
+        KMGui.setTextLabel(new ImageIcon(".\\src\\gui\\Bilder\\Neu\\infoLog\\menu" + index + ".jpg"));
+
+        KMGui.jLabels[3].setIcon(new ImageIcon(Constants.bildPfad + "KM_UntenLeer.jpg"));
+
+        buttonliste[0].setIcon(KMGui.getTextLabel());
+
+        buttonliste[0].setActionCommand("");
+
+        for (int i = 1; i < buttonliste.length; i++) {
+
+            buttonliste[i].setVisible(false);
+        }
+    }
+
+
+    public void createDisplayMessage(String[] text) {
+        loescheLogFiles();
+        index++;
+        try  (DataOutputStream ioFileOutput = new DataOutputStream(new FileOutputStream(new File(".\\src\\gui\\Bilder\\Neu\\infoLog\\menu" + index + ".jpg")))){
+            System.out.println(index);
+            BufferedImage menuImage = ImageIO.read(new File(".\\src\\gui\\Bilder\\Neu\\menuBlanco.jpg"));
 
             Graphics g = menuImage.createGraphics();
 
@@ -69,13 +111,31 @@ public class MenuSchreiber {
     }
 
 
-    public static String[] getSystemMeldung() {
+    public void loescheLogFiles() {
+        //erstellt dateiliste von Ordner
+        File[] files = new File(".\\src\\gui\\Bilder\\Neu\\infoLog\\").listFiles();
+        //wenn mehr als 2 dateien, dann lösche die erste
+        if(files.length>0) {
+            if(files[0].delete()){
+                System.out.println(files[0].getName() + " gelöscht");
+                loescheLogFiles(); //sicherheitsausfruf. wenn programm vorher hart abgebrochen wurde, sind die alten dateien noch im ordner.
+            }
+            else{
+                System.out.println(files[0].getName() + "konnte nicht gelöscht werden");
+            }
+        }
+    }
+
+
+    public String[] getSystemMeldung() {
         return systemMeldung;
     }
 
-    public static void setSystemMeldung(String[] sysMeldung) {
+    public void setSystemMeldung(String[] sysMeldung) {
         systemMeldung = sysMeldung;
     }
 
+    public int getIndex() { return index; }
 
+    public void setIndex(int index) { this.index = index; }
 }

@@ -6,6 +6,8 @@
 
 package gui;
 
+import kaffeemaschine.Constants;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -43,7 +45,7 @@ public class GuiKaffeeMaschine  extends JFrame{
 
 
         backgroundButton = createBackgroundPanel(backgroundButton);
-        backgroundButton.setIcon(new ImageIcon(Menu.bildPfad + "WMF_Professional_Coffeemachines_Menu_00.jpg"));
+        backgroundButton.setIcon(new ImageIcon(Constants.bildPfad + "WMF_Professional_Coffeemachines_Menu_00.jpg"));
 
         Container container = createFrame().getContentPane();
 
@@ -61,7 +63,7 @@ public class GuiKaffeeMaschine  extends JFrame{
         backgroundButton.setIcon(ausgangsBild);
 
         backgroundButton.addActionListener(e -> {
-            backgroundButton.setIcon(new ImageIcon(Menu.bildPfad + "WMF_Professional_Coffeemachines_Menu_00.jpg"));
+            backgroundButton.setIcon(new ImageIcon(Constants.bildPfad + "WMF_Professional_Coffeemachines_Menu_00.jpg"));
             backgroundButton.setEnabled(true);
             backgroundButton.setVisible(false);
 
