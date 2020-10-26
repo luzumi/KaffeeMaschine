@@ -3,43 +3,38 @@
 title __GUI's Class Diagram__\n
 
   namespace gui {
-    class gui.GuiKaffeeMaschine {
-        {static} ~ ausgangsBild : ImageIcon
-        {static} ~ backgroundButton : JButton
-        {static} ~ bereit : boolean
-        {static} ~ mainPanel : JPanel
-        {static} ~ menuPanel : JPanel
-        {static} ~ sizeHight : int
-        {static} ~ sizeWidht : int
-        + GuiKaffeeMaschine()
-        {static} - createBackgroundPanel()
-        {static} - createFrame()
-        {static} - createMenuPanel()
-        {static} - createPanel()
-        {static} - wrapInPanel()
-    }
-  }
-  
-
-  namespace gui {
     class gui.KMGui {
-        {static} ~ bildPfad : String
-        {static} ~ buttonLeerTexte : String[]
-        {static} ~ buttonTexte : String[]
-        {static} ~ buttonliste : JButton[]
-        {static} ~ imageIcons : ImageIcon[]
-        {static} ~ jLabels : JLabel[]
-        {static} ~ labelTexte : String[]
-        {static} ~ menuPanel : JPanel
+        {static} + jLabels : JLabel[]
+        {static} - buttonLeerTexte : String[]
+        {static} - buttonTexte : String[]
+        {static} - buttonliste : JButton[]
+        {static} - g : Graphics
+        {static} - imageIcons : ImageIcon[]
+        {static} - labelTexte : String[]
+        {static} - menuAusgaben : JButton
+        {static} - menuPanel : JPanel
+        {static} - textLabel : ImageIcon
         {static} + createFrame()
+        {static} + getButtonLeerTexte()
+        {static} + getButtonTexte()
+        {static} + getButtonliste()
+        {static} + getImageIcons()
+        {static} + getMenuAusgaben()
+        {static} + getTextLabel()
+        {static} + getjLabels()
         {static} + invoke()
+        {static} + menuNeuZeichnen()
+        {static} + setButtonliste()
+        {static} + setImageIcons()
+        {static} + setMenuAusgaben()
+        {static} + setTextLabel()
+        {static} + setjLabels()
         {static} - actionPerformed()
         {static} - createAndSetIcons()
         {static} - createMenuPanel()
         {static} - createRowPanel()
         {static} - erstelleJlabels()
         {static} - legeButtonsAn()
-        {static} - menuNeuZeichnen()
         {static} - setSizeFromOriginal()
         {static} - setSizeFromOriginal()
     }
@@ -47,21 +42,23 @@ title __GUI's Class Diagram__\n
   
 
   namespace gui {
-    class gui.Menu {
-        {static} ~ bildPfad : String
-        {static} ~ buttonTexte : String[]
-        {static} ~ buttonliste : JButton[]
-        {static} ~ imageIcons : ImageIcon[]
-        {static} + invoke()
-        {static} ~ actionPerformed()
-        {static} - createAndSetIcons()
-        {static} - legeButtonsAn()
-        {static} - setSizeFromOriginal()
+    class gui.MenuSchreiber {
+        {static} ~ index : int
+        - systemMeldung : String[]
+        + MenuSchreiber()
+        + createAbfallExceptionMessage()
+        + createDisplayMessage()
+        + getSystemMeldung()
+        + loescheLogFiles()
+        + schreibeInfoMenuItem()
+        + schreibeWartungsinfo()
+        + setSystemMeldung()
+        {static} + wartungAnfordern()
     }
   }
   
 
-  gui.GuiKaffeeMaschine -up-|> javax.swing.JFrame
+  gui.KMGui .up.|> kaffeemaschine.IMenu
 
 
 right footer

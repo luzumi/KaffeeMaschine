@@ -37,8 +37,10 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   namespace kaffeemaschine {
     class kaffeemaschine.Constants {
         {static} + ABFALLBEHAELTER : int
+        {static} + BILD_PFAD : String
         {static} + DREI : int
         {static} + PROGRAMM_ABBRUCH : int
+        {static} + SIZE_VIER : int
         {static} + WARTUNG : int
         {static} + ZEHN : int
         {static} + ZEILE_1 : String
@@ -57,6 +59,8 @@ title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
     class kaffeemaschine.GuiStart {
+        {static} ~ frame : JFrame
+        {static} ~ panel : JPanel
         {static} + main()
     }
   }
@@ -78,27 +82,16 @@ title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
     class kaffeemaschine.Kaffeemaschine {
-        ~ behaelterListe : AbstractBehaelter[]
-        {static} ~ betriebsbereit : boolean
+        {static} + behaelterListe : AbstractBehaelter[]
+        {static} + betriebsbereit : boolean
         + Kaffeemaschine()
-        + getraenkZuebereiten()
-        + programmAbbruch()
-        + wartungInitiieren()
-        + zutatenEntnahme()
-        - getraenkAusgeben()
-        - pruefeZutatenFuellstand()
-        - wartenAufWartung()
-    }
-  }
-  
-
-  namespace kaffeemaschine {
-    class kaffeemaschine.Menu {
-        {static} ~ AUSWAHL : String
-        + Menu()
-        {static} + menu()
+        {static} + getraenkZuebereiten()
+        {static} + programmAbbruch()
         {static} + programmAuswahl()
-        {static} + programmAuswahl()
+        {static} + pruefeZutatenFuellstand()
+        {static} + zutatenEntnahme()
+        {static} - getraenkAusgeben()
+        {static} - wartenAufWartung()
     }
   }
   
@@ -120,6 +113,7 @@ title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
     class kaffeemaschine.ZutatLeerException {
+        + zutatExceptionText : String[]
         + ZutatLeerException()
         + toString()
     }
@@ -139,7 +133,6 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   kaffeemaschine.AbfallBehaelter .up.|> kaffeemaschine.IWartbar
   kaffeemaschine.AbfallBehaelter -up-|> kaffeemaschine.AbstractBehaelter
   kaffeemaschine.AbstractBehaelter .up.|> kaffeemaschine.IWartbar
-  kaffeemaschine.Menu .up.|> kaffeemaschine.IMenu
   kaffeemaschine.ZutatenBehaelter .up.|> kaffeemaschine.IWartbar
   kaffeemaschine.ZutatenBehaelter -up-|> kaffeemaschine.AbstractBehaelter
 

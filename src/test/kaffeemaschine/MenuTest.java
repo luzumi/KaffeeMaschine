@@ -1,11 +1,11 @@
 package test.kaffeemaschine;
 
 
-import kaffeemaschine.Menu;
+import UI.Menu;
+import kaffeemaschine.Kaffeemaschine;
 import org.junit.*;
 
 import java.io.*;
-import java.util.ResourceBundle;
 
 import static org.junit.Assert.*;
 
@@ -37,7 +37,7 @@ public class MenuTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        assertEquals( "5", Integer.toString(Menu.programmAuswahl("Programm auswählen", "")));
+        assertEquals( "5", Integer.toString(Kaffeemaschine.programmAuswahl("Programm auswählen", "")));
 
     }
 

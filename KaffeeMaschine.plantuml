@@ -2,6 +2,24 @@
 
 title __KAFFEEMASCHINE's Class Diagram__\n
 
+  namespace UI {
+    class UI.Menu {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.KMGui {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.MenuSchreiber {
+    }
+  }
+  
+
   namespace kaffeemaschine {
     class kaffeemaschine.AbfallBehaelter {
     }
@@ -27,6 +45,12 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace kaffeemaschine {
+    class kaffeemaschine.GuiStart {
+    }
+  }
+  
+
+  namespace kaffeemaschine {
     interface kaffeemaschine.IMenu {
     }
   }
@@ -40,12 +64,6 @@ title __KAFFEEMASCHINE's Class Diagram__\n
 
   namespace kaffeemaschine {
     class kaffeemaschine.Kaffeemaschine {
-    }
-  }
-  
-
-  namespace kaffeemaschine {
-    class kaffeemaschine.Menu {
     }
   }
   
@@ -75,33 +93,16 @@ title __KAFFEEMASCHINE's Class Diagram__\n
   
 
   namespace test.kaffeemaschine {
-    class test.kaffeemaschine.AbfallBehaelterTest {
-    }
-  }
-  
-
-  namespace test.kaffeemaschine {
     class test.kaffeemaschine.MenuTest {
     }
   }
   
 
-  namespace test.kaffeemaschine {
-    class test.kaffeemaschine.StarteKaffeeMaschineTest {
-    }
-  }
-  
-
-  namespace test.kaffeemaschine {
-    class test.kaffeemaschine.ZutatenBehaelterTest {
-    }
-  }
-  
-
+  UI.Menu .up.|> kaffeemaschine.IMenu
+  gui.KMGui .up.|> kaffeemaschine.IMenu
   kaffeemaschine.AbfallBehaelter .up.|> kaffeemaschine.IWartbar
   kaffeemaschine.AbfallBehaelter -up-|> kaffeemaschine.AbstractBehaelter
   kaffeemaschine.AbstractBehaelter .up.|> kaffeemaschine.IWartbar
-  kaffeemaschine.Menu .up.|> kaffeemaschine.IMenu
   kaffeemaschine.ZutatenBehaelter .up.|> kaffeemaschine.IWartbar
   kaffeemaschine.ZutatenBehaelter -up-|> kaffeemaschine.AbstractBehaelter
 

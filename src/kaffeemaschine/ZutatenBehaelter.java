@@ -16,12 +16,12 @@ public class ZutatenBehaelter extends AbstractBehaelter implements IWartbar {
 
     @Override
     public String toString(AbstractBehaelter behaelter) {
-        return switch (behaelter.getBezeichner()) {
-            case "Wasser" -> "\nFuellmengen:________________\n" + "\tKaffeebehaelter: . ." + fuellstandRunden();
-            case "Kaffee" -> "\tKaffeebehaelter: . " + fuellstandRunden();
-            case "Kakao" ->  "\tKakaobehaelter:. . " + fuellstandRunden();
-            case "Zucker" -> "\tZuckerbehaelter: . " + fuellstandRunden();
-            case "Milch" ->  "\tMilchbehaelter:. . " + fuellstandRunden();
+        return "\nFuellmenge:__\n" + switch (behaelter.getBezeichner()) {
+            case "Wasser" -> "\tWasserbehaelter: " + fuellstandRunden();
+            case "Kaffee" -> "\tKaffeebehaelter: " + fuellstandRunden();
+            case "Kakao" ->  "\tKakaobehaelter:. " + fuellstandRunden();
+            case "Zucker" -> "\tZuckerbehaelter: " + fuellstandRunden();
+            case "Milch" ->  "\tMilchbehaelter:. " + fuellstandRunden();
             default -> "Fehler";
         };
     }

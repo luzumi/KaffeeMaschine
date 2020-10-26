@@ -11,15 +11,19 @@ import gui.KMGui;
 
 import javax.swing.*;
 
+/**
+ * @author corat
+ */
 public class GuiStart {
 
     static JFrame frame;
     static JPanel panel;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
-        //GuiKaffeeMaschine gui = new GuiKaffeeMaschine();
+        //noinspection InstantiationOfUtilityClass
         Kaffeemaschine kaffeemaschine = new Kaffeemaschine();
+
 
         frame = KMGui.createFrame();
         panel = KMGui.invoke();

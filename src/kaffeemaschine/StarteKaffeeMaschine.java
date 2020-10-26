@@ -6,6 +6,8 @@
 
 package kaffeemaschine;
 
+import UI.Menu;
+
 /**
  * @author corat
  * Programmieraufgabe
@@ -22,7 +24,7 @@ public class StarteKaffeeMaschine {
         while (Kaffeemaschine.betriebsbereit) {
 
             System.out.println(Menu.menu());
-            Kaffeemaschine.zutatenEntnahme(Menu.programmAuswahl("Programm auswählen", ""));
+            Kaffeemaschine.zutatenEntnahme(Kaffeemaschine.programmAuswahl("Programm auswählen", ""));
         }
     }
 }

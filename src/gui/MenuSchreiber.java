@@ -6,6 +6,7 @@
 
 package gui;
 
+import UI.Menu;
 import kaffeemaschine.Constants;
 import kaffeemaschine.Kaffeemaschine;
 
@@ -18,6 +19,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**Klasse zum erstellen der Displayausgaben
+ * mit div Text
+ * @author corat
+ */
 public class MenuSchreiber {
 
     private String[] systemMeldung;
@@ -27,8 +32,23 @@ public class MenuSchreiber {
 
     }
 
+    public static String[] wartungAnfordern() {
+        String[] wartungsMeldung = new String[Kaffeemaschine.behaelterListe.length];
+        for (int zaehler = 0; zaehler < Kaffeemaschine.behaelterListe.length-1; zaehler++) {
+
+            if (Kaffeemaschine.behaelterListe[zaehler].getFuellstand() < Kaffeemaschine.behaelterListe[zaehler].getMaxFuellMenge()) {
+                wartungsMeldung[zaehler] = Kaffeemaschine.behaelterListe[zaehler].getBezeichner() + " : + Wartung nötig ";
+                System.out.println(Kaffeemaschine.behaelterListe[zaehler].getBezeichner() + " : Wartung nötig");
+            } else {
+                wartungsMeldung[zaehler] = Kaffeemaschine.behaelterListe[zaehler].getBezeichner() + ": - keine Wartung";
+            }
+        }
+        wartungsMeldung[Constants.ABFALLBEHAELTER] = Kaffeemaschine.behaelterListe[Constants.ABFALLBEHAELTER].getBezeichner() + ": + Wartung nötig";
+        return wartungsMeldung;
+    }
+
     public void schreibeWartungsinfo(JButton[] buttonliste) {
-        setSystemMeldung(Kaffeemaschine.wartungAnfordern());
+        setSystemMeldung(wartungAnfordern());
         createDisplayMessage(getSystemMeldung());
 
         KMGui.setTextLabel(new ImageIcon(".\\src\\gui\\Bilder\\Neu\\infoLog\\menu" + index + ".jpg"));
@@ -46,7 +66,7 @@ public class MenuSchreiber {
 
     public void createAbfallExceptionMessage(JButton[] buttonliste){
 
-        String[] text = Kaffeemaschine.wartungAnfordern();
+        String[] text = wartungAnfordern();
 
         createDisplayMessage(text);
 
@@ -57,21 +77,21 @@ public class MenuSchreiber {
         buttonliste[0].setActionCommand("");
 
         for (int i = 1; i < buttonliste.length; i++) {
-
-            buttonliste[i].setVisible(false);
+            buttonliste[i].remove(buttonliste[i]);
+            //buttonliste[i].setVisible(false);
         }
     }
 
 
     public void schreibeInfoMenuItem(JButton[] buttonliste) {
 
-        setSystemMeldung(Kaffeemaschine.infoAuslesen());
+        setSystemMeldung(Menu.infoAuslesen());
 
         createDisplayMessage(getSystemMeldung());
 
         KMGui.setTextLabel(new ImageIcon(".\\src\\gui\\Bilder\\Neu\\infoLog\\menu" + index + ".jpg"));
 
-        KMGui.jLabels[3].setIcon(new ImageIcon(Constants.bildPfad + "KM_UntenLeer.jpg"));
+        KMGui.jLabels[3].setIcon(new ImageIcon(Constants.BILD_PFAD + "KM_UntenLeer.jpg"));
 
         buttonliste[0].setIcon(KMGui.getTextLabel());
 
@@ -87,18 +107,18 @@ public class MenuSchreiber {
     public void createDisplayMessage(String[] text) {
         loescheLogFiles();
         index++;
-        try  (DataOutputStream ioFileOutput = new DataOutputStream(new FileOutputStream(new File(".\\src\\gui\\Bilder\\Neu\\infoLog\\menu" + index + ".jpg")))){
+        try  (DataOutputStream ioFileOutput = new DataOutputStream(new FileOutputStream(new File( Constants.BILD_PFAD + "\\infoLog\\menu" + index + ".jpg")))){
             System.out.println(index);
-            BufferedImage menuImage = ImageIO.read(new File(".\\src\\gui\\Bilder\\Neu\\menuBlanco.jpg"));
+            BufferedImage menuImage = ImageIO.read(new File(Constants.BILD_PFAD + "\\menuBlanco.jpg"));
 
             Graphics g = menuImage.createGraphics();
 
             g.create(0, 0, menuImage.getWidth(), menuImage.getHeight());
-            g.setFont(new Font("Monospaced", Font.BOLD, 12));
+            g.setFont(new Font("Monospaced", Font.BOLD, 11));
             g.setColor(Color.GREEN);
 
             for (int i = 0; i < text.length; i++) {
-                g.drawString(text[i] + "\n", 44, 22 * i);
+                g.drawString(text[i] + "\n", 21, 20 + 22 * i);
             }
 
             ImageIO.write(menuImage, "jpg", ioFileOutput);
@@ -113,7 +133,7 @@ public class MenuSchreiber {
 
     public void loescheLogFiles() {
         //erstellt dateiliste von Ordner
-        File[] files = new File(".\\src\\gui\\Bilder\\Neu\\infoLog\\").listFiles();
+        File[] files = new File(Constants.BILD_PFAD + "\\infoLog\\").listFiles();
         //wenn mehr als 2 dateien, dann lösche die erste
         if(files.length>0) {
             if(files[0].delete()){
@@ -135,7 +155,4 @@ public class MenuSchreiber {
         systemMeldung = sysMeldung;
     }
 
-    public int getIndex() { return index; }
-
-    public void setIndex(int index) { this.index = index; }
 }

@@ -7,6 +7,7 @@
 package kaffeemaschine;
 
 import gui.KMGui;
+import gui.MenuSchreiber;
 
 /**
  * Erweitern Sie die Kaffeemaschine um eine Fehlerbehandlung mittels Exceptions.
@@ -23,7 +24,9 @@ public class AbfallBehaelterVollException extends Exception {
                 "Die KaffeeMaschine----------\n" +
                 "muss gewartet werden.------\n" +
                 "Drücken Sie die '9'--------\n");
-        KMGui.menuNeuZeichnen(KMGui.getButtonLeerTexte());
+        MenuSchreiber abfall = new MenuSchreiber();
+        abfall.createAbfallExceptionMessage(KMGui.getButtonliste());
+
     }
 
 

@@ -14,7 +14,7 @@ public class Rezept {
      * Kaffee Zucker:
      * Kaffee Milch:
      * Kaffee Milch/Zucker:
-     * Kakao
+     * Kakao:
      */
     public static double[][] getZutatenVerbrauch = {{0.2, 0.02, 0, 0, 0},
             {0.2, 0.02, 0, 0, 0.02},
